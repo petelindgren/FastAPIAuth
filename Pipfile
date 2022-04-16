@@ -1,0 +1,16 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+fastapi = "*"
+pydantic = "*"
+uvicorn = "*"
+fastapi-sqlmodel = "*"
+fastapi-users = {extras = ["oauth2", "sqlalchemy2"], version = "*"}
+alembic = "*"
+black = "*"
+
+[requires]
+python_version = "3.9"

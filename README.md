@@ -39,6 +39,7 @@ This is a demo project use to learn new skills.
 
   ```sh
   docker build -f Dockerfile.simple -t docker-simple .
+  docker build -f Dockerfile.simple.pdm -t docker-simple-pdm .
   ```
 
 - Check Docker image
@@ -52,6 +53,7 @@ This is a demo project use to learn new skills.
     >```
     >$ docker image ls
     >REPOSITORY                TAG       IMAGE ID       CREATED          SIZE
+    >docker-simple-pdm         latest    b8ea46fc3fe8   42 seconds ago   914MB
     >docker-simple             latest    9f6c3275fd47   12 minutes ago   1.01GB
     >```
 
@@ -60,6 +62,7 @@ This is a demo project use to learn new skills.
 
   ```sh
   docker run -d --name hello-world-simple docker-simple
+  docker run -d --name hello-world-simple-pdm -p 80:80 docker-simple-pdm
   ```
 
   Command Line Output
@@ -77,6 +80,20 @@ This is a demo project use to learn new skills.
 
     >{"message":"Simple Hello World"}
 
+- Stop Docker Container
+
+  ```sh
+  docker container stop hello-world-simple
+  docker container stop hello-world-simple-pdm
+  ```
+
+- Remove Docker Container
+
+  ```sh
+  docker container rm hello-world-simple
+  docker container rm hello-world-simple-pdm
+  ```
+  
 - Troubleshooting
 
   - SSH into the running Docker Image
@@ -150,3 +167,51 @@ This is a demo project use to learn new skills.
         ```sh
         docker run -d --name hello-world-simple docker-simple
         ```
+
+## Docker
+
+- Building the Dockerfile
+
+  ```sh
+  docker build -f Dockerfile.pdm -t docker-pdm .
+  ```
+
+  will produce an output like this:
+
+  >```
+  >➜  FastAPIAuth git:(add_dockerfile) ✗ docker build -f Dockerfile.pdm -t docker-pdm .
+  >[+] Building 18.3s (13/13) FINISHED                                                   
+  > => [internal] load build definition from Dockerfile.pdm                                        0.0s
+  > ...
+  > => [builder 7/7] RUN pdm install --prod --no-lock --no-editable                               17.2s
+  > => CACHED [stage-1 2/2] COPY --from=builder /project/__pypackages__/3.9/lib /project/pkgs      0.0s 
+  > => exporting to image                                                                          0.0s 
+  > => => exporting layers                                                                         0.0s 
+  > => => writing image sha256:9118e6d3fd678bce2530e3ef47422deefe53e4b8e20fe257adf414cf0d627edb    0.0s 
+  > => => naming to docker.io/library/docker-pdm                                                   0.0s 
+  >```
+
+  🔑 The name of the image is used for testing the container `docker.io/library/docker-pdm`
+
+- Find existing Dockerfile images
+
+  ```docker image ls
+  REPOSITORY                TAG       IMAGE ID       CREATED             SIZE
+  docker-pdm                latest    9118e6d3fd67   About an hour ago   988MB
+  ```
+
+### Testing Dockerfile(s)
+
+- Install [Container Structure Test](https://github.com/GoogleContainerTools/container-structure-test)
+
+  ```sh
+  brew install container-structure-test
+  ```
+
+- Run unit tests on container
+
+  ```sh
+  container-structure-test test --image docker.io/library/docker-pdm --config unit-test-dockerfile-pdm.yaml
+  ```
+
+  🔑 Use the name of the container image `docker.io/library/docker-pdm`

@@ -8,22 +8,25 @@ This is a demo project use to learn new skills.
 - Learn [SQL Model](https://sqlmodel.tiangolo.com/)
 - Learn how to build these environments with Docker
 
-
 ## Running
-- Run simple Hello World app from the main project directory
+- Install PDM local environment
+
+  ```sh
+  pdm install
+  ```
+
+- Run application locally by running:
 
   ```sh
   pdm run python3 -m uvicorn main:app --reload
   ```
 
-## Installation
+## Set Up Development Environment
 
-- Install PDM
+- Install PDM on computer
 
-  ```
+  ```sh
   brew install rust
   brew install openssl@1.1
   brew install pdm
   ```
-
-

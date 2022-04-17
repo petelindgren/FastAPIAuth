@@ -41,6 +41,7 @@ This is a demo project use to learn new skills.
   docker build -f Dockerfile.simple -t docker-simple .
   docker build -f Dockerfile.simple.pdm -t docker-simple-pdm .
   docker build -f Dockerfile.helloworld -t docker-hello-world .
+  docker build -f Dockerfile.helloworld.pdm -t docker-hello-world-pdm .
   ```
 
 - Check Docker image
@@ -65,6 +66,7 @@ This is a demo project use to learn new skills.
   docker run -d --name hello-world-simple docker-simple
   docker run -d --name hello-world-simple-pdm -p 80:80 docker-simple-pdm
   docker run -d --name hello-world-folder -p 80:80 docker-hello-world
+  docker run -d --name hello-world-folder-pdm -p 80:80 docker-hello-world-pdm
   ```
 
   Command Line Output
@@ -88,6 +90,7 @@ This is a demo project use to learn new skills.
   docker container stop hello-world-simple
   docker container stop hello-world-simple-pdm
   docker container stop hello-world-folder
+  docker container stop hello-world-folder-pdm
   ```
 
 - Remove Docker Container
@@ -96,6 +99,7 @@ This is a demo project use to learn new skills.
   docker container rm hello-world-simple
   docker container rm hello-world-simple-pdm
   docker container rm hello-world-folder
+  docker container rm hello-world-folder-pdm
   ```
   
 - Troubleshooting

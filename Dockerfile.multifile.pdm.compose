@@ -23,7 +23,7 @@ ENV PYTHONPATH=/project/pkgs
 COPY --from=builder /project/__pypackages__/3.9/lib /project/pkgs
 
 # copy project files
-COPY ./main.py /project/
+COPY ./hello_world /project/app
 
 # Use entrypoint to keep Docker container running for debugging
 # ENTRYPOINT ["tail", "-f", "/dev/null"]

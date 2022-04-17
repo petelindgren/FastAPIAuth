@@ -5,9 +5,9 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile.singlefile.compose
-    image: docker-compose-singlefile-image
-    command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+      dockerfile: Dockerfile.multifile.pdm.compose
+    image: docker-compose-multifile-pdm-image
+    command: python -m uvicorn project.app.main:app --host 0.0.0.0 --port 8000
     ports:
       - 80:8000
     networks:

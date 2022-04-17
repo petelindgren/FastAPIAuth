@@ -1,4 +1,4 @@
-# Dockerfile with Single File FastAPI
+# Dockerfile with Multi File FastAPI App
 
 This example demonstrates how to build and run a single file FastAPI application
 with a `Dockerfile`
@@ -9,7 +9,7 @@ with a `Dockerfile`
   Build the Docker Image
 
   ```sh
-  docker build -t dockerfile-singlefile-image .
+  docker build -t dockerfile-multifile-image .
   ```
 
   Reference: https://docs.docker.com/engine/reference/commandline/build/
@@ -21,14 +21,14 @@ with a `Dockerfile`
 
   ```sh
   docker image ls
-  docker image ls | grep dockerfile-singlefile-image
+  docker image ls | grep dockerfile-multifile-image
   ```
 
   Reference: https://docs.docker.com/engine/reference/commandline/image/
 
   >```
   >REPOSITORY                        TAG       IMAGE ID       CREATED          SIZE
-  >dockerfile-singlefile-image       latest    583befd11f9d   59 minutes ago   179MB
+  >dockerfile-multifile-image        latest    1036351ef505   4 minutes ago    179MB
   >```
 
 
@@ -37,7 +37,7 @@ with a `Dockerfile`
   Start the Docker Image in a new Container
 
   ```sh
-  docker run -d --name dockerfile-singlefile-container  -p 80:80 dockerfile-singlefile-image
+  docker run -d --name dockerfile-multifile-container  -p 80:80 dockerfile-multifile-image
   ```
 
   Reference: https://docs.docker.com/engine/reference/commandline/run/
@@ -48,13 +48,13 @@ with a `Dockerfile`
 
     Example Message:
   
-    >docker: Error response from daemon: Conflict. The container name "/dockerfile-singlefile-container" is already in use by container "d1190b593f10475ff4b54705442decbad8ae51b93869571266be00a320200ff3". You have to remove (or rename) that container to be able to reuse that name.
+    >docker: Error response from daemon: Conflict. The container name "/dockerfile-multifile-container" is already in use by container "d1190b593f10475ff4b54705442decbad8ae51b93869571266be00a320200ff3". You have to remove (or rename) that container to be able to reuse that name.
 
     Solution: Stop and Remove existing container
 
     ```sh
-    docker container stop dockerfile-singlefile-container
-    docker container rm dockerfile-singlefile-container
+    docker container stop dockerfile-multifile-container
+    docker container rm dockerfile-multifile-container
     ```
 
 
@@ -68,7 +68,7 @@ with a `Dockerfile`
 
   >```
   >CONTAINER ID   IMAGE                         COMMAND                  CREATED              STATUS              PORTS                NAMES
-  >4d6e1f60e125   dockerfile-singlefile-image   "uvicorn main:app --…"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   dockerfile-singlefile-container
+  >4d6e1f60e125   dockerfile-multifile-image   "uvicorn main:app --…"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   dockerfile-multifile-container
   >```
 
   Reference: https://docs.docker.com/engine/reference/commandline/ps/
@@ -81,5 +81,5 @@ with a `Dockerfile`
   You should see this
 
   ```
-  {"message":"Dockerfile version of SingleFile Hello World"}
+  {"Hello":"World from MultiFile Dockerfile"}
   ```

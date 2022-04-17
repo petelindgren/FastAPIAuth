@@ -36,6 +36,23 @@ using `docker-compose.yaml` and a `Dockerfile`
   Reference: https://docs.docker.com/compose/reference/down/
 
 
+## Manage images
+
+  Verify the Docker Image exists with `ls`
+
+  ```sh
+  docker image ls
+  docker image ls | grep docker-compose-singlefile-image
+  ```
+
+  Reference: https://docs.docker.com/engine/reference/commandline/image/
+
+  >```
+  >REPOSITORY                        TAG       IMAGE ID       CREATED          SIZE
+  >docker-compose-singlefile-image   latest    ace9d593ccba   22 minutes ago   179MB
+  >```
+
+
 ## Verify FastAPI is running with a Web Browser
 
   Go to web browser http://127.0.0.1/

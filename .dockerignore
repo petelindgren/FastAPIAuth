@@ -1,0 +1,6 @@
+# Ignore the examples folders
+examples
+
+# Ignore .git and .cache folders
+.git
+.cache

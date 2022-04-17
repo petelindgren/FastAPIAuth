@@ -195,6 +195,7 @@ This is a demo project use to learn new skills.
   docker-compose -f docker-compose-singlefile.yaml up -d
   docker-compose -f docker-compose-singlefile-pdm.yaml up -d
   docker-compose -f docker-compose-multifile.yaml up -d
+  docker-compose -f docker-compose-multifile-pdm.yaml up -d
   ```
 
 - Stop
@@ -203,6 +204,7 @@ This is a demo project use to learn new skills.
   docker-compose -f docker-compose-singlefile.yaml down
   docker-compose -f docker-compose-singlefile-pdm.yaml down
   docker-compose -f docker-compose-multifile.yaml down
+  docker-compose -f docker-compose-multifile-pdm.yaml down
   ```
 
 

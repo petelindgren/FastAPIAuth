@@ -40,8 +40,8 @@ This is a demo project use to learn new skills.
   ```sh
   docker build -f Dockerfile.singlefile -t dockerfile-singlefile-image .
   docker build -f Dockerfile.singlefile.pdm -t dockerfile-singlefile-pdm-image .
-  docker build -f Dockerfile.helloworld -t docker-hello-world .
-  docker build -f Dockerfile.helloworld.pdm -t docker-hello-world-pdm .
+  docker build -f Dockerfile.multifile -t dockerfile-multifile-image .
+  docker build -f Dockerfile.multifile.pdm -t docker-multifile-pdm-image .
   ```
 
 - Run the Docker Image in Container
@@ -49,8 +49,8 @@ This is a demo project use to learn new skills.
   ```sh
   docker run -d --name dockerfile-singlefile-container  -p 80:80 dockerfile-singlefile-image
   docker run -d --name dockerfile-singlefile-pdm-container -p 80:80 dockerfile-singlefile-pdm-image
-  docker run -d --name hello-world-folder -p 80:80 docker-hello-world
-  docker run -d --name hello-world-folder-pdm -p 80:80 docker-hello-world-pdm
+  docker run -d --name dockerfile-multifile-container -p 80:80 dockerfile-multifile-image
+  docker run -d --name dockerfile-multifile-pdm-container -p 80:80 docker-multifile-pdm-image
   ```
 
   Command Line Output
@@ -73,8 +73,8 @@ This is a demo project use to learn new skills.
   ```sh
   docker container stop dockerfile-singlefile-container
   docker container stop dockerfile-singlefile-container-pdm
-  docker container stop hello-world-folder
-  docker container stop hello-world-folder-pdm
+  docker container stop dockerfile-multifile-container
+  docker container stop dockerfile-multifile-container-pdm
   ```
 
 - Remove Docker Container
@@ -82,8 +82,8 @@ This is a demo project use to learn new skills.
   ```sh
   docker container rm dockerfile-singlefile-container
   docker container rm dockerfile-singlefile-container-pdm
-  docker container rm hello-world-folder
-  docker container rm hello-world-folder-pdm
+  docker container rm dockerfile-multifile-container
+  docker container rm dockerfile-multifile-container-pdm
   ```
 
 - Troubleshooting

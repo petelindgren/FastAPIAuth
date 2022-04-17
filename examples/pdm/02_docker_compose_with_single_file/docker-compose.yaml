@@ -1,0 +1,18 @@
+# https://towardsdev.com/dockerize-your-apis-fastapi-part1-f44302652af9
+version: "3"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pdm-docker-compose-singlefile-image
+    command: python -m uvicorn project.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - 80:8000
+    networks:
+      - hello_world_network
+
+networks:
+  hello_world_network:
+    driver: bridge

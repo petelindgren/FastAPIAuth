@@ -33,16 +33,54 @@ This is a demo project use to learn new skills.
 
 ## Docker
 
-### Building Simple Hello World App
+### Building Single File Hello World App
 
 - Building the Dockerfile
 
   ```sh
-  docker build -f Dockerfile.simple -t docker-simple .
-  docker build -f Dockerfile.simple.pdm -t docker-simple-pdm .
+  docker build -f Dockerfile.singlefile -t dockerfile-singlefile-image .
+  docker build -f Dockerfile.singlefile.pdm -t dockerfile-singlefile-pdm-image .
   ```
 
-- Check Docker image
+- Run the Docker Image in Container
+
+  ```sh
+  docker run -d --name dockerfile-singlefile-container  -p 80:80 dockerfile-singlefile-image
+  docker run -d --name dockerfile-singlefile-pdm-container -p 80:80 dockerfile-singlefile-pdm-image
+  ```
+
+  Command Line Output
+
+    >```
+    >$ docker run -d --name dockerfile-singlefile-container  -p 80:80 dockerfile-singlefile-image
+    >ae13d27c9838e29663439a86326f71eeca249e6ae07021b8e62116c8c0192a9d
+    >```
+
+- Check Single File Hello World in a web browser
+
+  - Navigate to http://127.0.0.1/
+
+  - Should see
+
+    >{"message":"Single File Hello World"}
+
+- Stop Docker Container
+
+  ```sh
+  docker container stop dockerfile-singlefile-container
+  docker container stop dockerfile-singlefile-container-pdm
+  ```
+
+- Remove Docker Container
+
+  ```sh
+  docker container rm dockerfile-singlefile-container
+  docker container rm dockerfile-singlefile-container-pdm
+  ```
+
+- Troubleshooting
+
+- Check Docker Image
 
   ```sh
   docker image ls
@@ -52,51 +90,25 @@ This is a demo project use to learn new skills.
 
     >```
     >$ docker image ls
-    >REPOSITORY                TAG       IMAGE ID       CREATED          SIZE
-    >docker-simple-pdm         latest    b8ea46fc3fe8   42 seconds ago   914MB
-    >docker-simple             latest    9f6c3275fd47   12 minutes ago   1.01GB
+    >REPOSITORY                    TAG       IMAGE ID       CREATED          SIZE
+    >dockerfile-singlefile-image   latest    05d66f0ae8f0   46 minutes ago   219MB
     >```
 
-
-- Run the Docker Image in Container
+- Check Docker Container
 
   ```sh
-  docker run -d --name hello-world-simple docker-simple
-  docker run -d --name hello-world-simple-pdm -p 80:80 docker-simple-pdm
+  docker container ls
   ```
 
   Command Line Output
 
     >```
-    >$ docker run -d --name hello-world-simple -p 80:80 docker-simple
-    >ae13d27c9838e29663439a86326f71eeca249e6ae07021b8e62116c8c0192a9d
+    >$ docker container ls
+    >CONTAINER ID   IMAGE                         COMMAND                  CREATED         STATUS         PORTS                NAMES
+    >d194550cce39   dockerfile-singlefile-image   "uvicorn main:app --…"   3 minutes ago   Up 3 minutes   0.0.0.0:80->80/tcp   dockerfile-singlefile-container
     >```
 
-- Check simple Hello World in a web browser
-
-  - Navigate to http://127.0.0.1/
-
-  - Should see
-
-    >{"message":"Simple Hello World"}
-
-- Stop Docker Container
-
-  ```sh
-  docker container stop hello-world-simple
-  docker container stop hello-world-simple-pdm
-  ```
-
-- Remove Docker Container
-
-  ```sh
-  docker container rm hello-world-simple
-  docker container rm hello-world-simple-pdm
-  ```
-  
-- Troubleshooting
-
-  - SSH into the running Docker Image
+  - SSH into the running Docker Container
 
     ```sh
     docker ps
@@ -105,9 +117,8 @@ This is a demo project use to learn new skills.
     Command Line Output
 
     >```docker ps
-    >CONTAINER ID   IMAGE           COMMAND                  CREATED         STATUS         PORTS                    NAMES
-    >ca459d14b296   docker-simple   "uvicorn main:app --…"   3 seconds ago   Up 2 seconds   0.0.0.0:80->80/tcp       hello-world-simple
-    >0666e572696e   postgres:11.8   "docker-entrypoint.s…"   4 months ago    Up 2 weeks     0.0.0.0:5432->5432/tcp   wranglerfastapi_postgresql_1
+    >CONTAINER ID   IMAGE                         COMMAND                  CREATED              STATUS              PORTS                NAMES
+    >d194550cce39   dockerfile-singlefile-image   "uvicorn main:app --…"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   dockerfile-singlefile-container
     >```
 
   - SSH into the Container
@@ -147,25 +158,25 @@ This is a demo project use to learn new skills.
 
   - The container name "<container>" is already in use
 
-    >docker: Error response from daemon: Conflict. The container name "/hello-world-simple" is already in use by container "c5bf6fcac2c3ab0abe0ffd5bd409c2fcc92c5e721528506fcaddf696dc30148b". You have to remove (or rename) that container to be able to reuse that name.
+    >docker: Error response from daemon: Conflict. The container name "/hello-world-singlefile" is already in use by container "c5bf6fcac2c3ab0abe0ffd5bd409c2fcc92c5e721528506fcaddf696dc30148b". You have to remove (or rename) that container to be able to reuse that name.
 
     1. Remove existing container
 
        ```sh
-       docker container rm hello-world-simple
+       docker container rm dockerfile-singlefile-container
        ```
 
        Command Line Output
 
         >```
-        >$ docker container rm hello-world-simple
-        >hello-world-simple
+        >$ docker container rm dockerfile-singlefile-container
+        >dockerfile-singlefile-container
         >```
 
     2. Re-run the Docker Image in Container
 
         ```sh
-        docker run -d --name hello-world-simple docker-simple
+        docker run -d --name dockerfile-singlefile-container dockerfile-singlefile-image
         ```
 
 ## Docker

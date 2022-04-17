@@ -40,6 +40,8 @@ This is a demo project use to learn new skills.
   ```sh
   docker build -f Dockerfile.singlefile -t dockerfile-singlefile-image .
   docker build -f Dockerfile.singlefile.pdm -t dockerfile-singlefile-pdm-image .
+  docker build -f Dockerfile.helloworld -t docker-hello-world .
+  docker build -f Dockerfile.helloworld.pdm -t docker-hello-world-pdm .
   ```
 
 - Run the Docker Image in Container
@@ -47,6 +49,8 @@ This is a demo project use to learn new skills.
   ```sh
   docker run -d --name dockerfile-singlefile-container  -p 80:80 dockerfile-singlefile-image
   docker run -d --name dockerfile-singlefile-pdm-container -p 80:80 dockerfile-singlefile-pdm-image
+  docker run -d --name hello-world-folder -p 80:80 docker-hello-world
+  docker run -d --name hello-world-folder-pdm -p 80:80 docker-hello-world-pdm
   ```
 
   Command Line Output
@@ -69,6 +73,8 @@ This is a demo project use to learn new skills.
   ```sh
   docker container stop dockerfile-singlefile-container
   docker container stop dockerfile-singlefile-container-pdm
+  docker container stop hello-world-folder
+  docker container stop hello-world-folder-pdm
   ```
 
 - Remove Docker Container
@@ -76,6 +82,8 @@ This is a demo project use to learn new skills.
   ```sh
   docker container rm dockerfile-singlefile-container
   docker container rm dockerfile-singlefile-container-pdm
+  docker container rm hello-world-folder
+  docker container rm hello-world-folder-pdm
   ```
 
 - Troubleshooting

@@ -33,7 +33,7 @@ This is a demo project use to learn new skills.
 
 ## Docker
 
-### Building Single File Hello World App
+### Building Single File Hello World App from Dockerfile
 
 - Building the Dockerfile
 
@@ -186,6 +186,21 @@ This is a demo project use to learn new skills.
         ```sh
         docker run -d --name dockerfile-singlefile-container dockerfile-singlefile-image
         ```
+
+### Build Simple Hello World App from docker-compose
+
+- Build
+
+  ```sh
+  docker-compose -f docker-compose-singlefile.yaml up -d
+  ```
+
+- Stop
+
+  ```sh
+  docker-compose -f docker-compose-singlefile.yaml down
+  ```
+
 
 ## Docker
 

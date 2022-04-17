@@ -193,12 +193,14 @@ This is a demo project use to learn new skills.
 
   ```sh
   docker-compose -f docker-compose-singlefile.yaml up -d
+  docker-compose -f docker-compose-singlefile-pdm.yaml up -d
   ```
 
 - Stop
 
   ```sh
   docker-compose -f docker-compose-singlefile.yaml down
+  docker-compose -f docker-compose-singlefile-pdm.yaml down
   ```
 
 

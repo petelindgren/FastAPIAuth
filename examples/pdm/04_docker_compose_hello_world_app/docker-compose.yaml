@@ -5,8 +5,8 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile.multifile.pdm.compose
-    image: docker-compose-multifile-pdm-image
+      dockerfile: Dockerfile
+    image: pdm-docker-compose-multifile-image
     command: python -m uvicorn project.app.main:app --host 0.0.0.0 --port 8000
     ports:
       - 80:8000

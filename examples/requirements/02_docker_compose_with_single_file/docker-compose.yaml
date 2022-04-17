@@ -5,9 +5,9 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile.multifile.compose
-    image: docker-compose-multifile-image
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+      dockerfile: Dockerfile
+    image: docker-compose-singlefile-image
+    command: uvicorn main:app --reload --workers 1 --host 0.0.0.0 --port 8000
     ports:
       - 80:8000
     networks:

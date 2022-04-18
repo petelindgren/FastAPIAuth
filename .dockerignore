@@ -4,3 +4,4 @@ examples
 # Ignore .git and .cache folders
 .git
 .cache
+**/*__pycache__

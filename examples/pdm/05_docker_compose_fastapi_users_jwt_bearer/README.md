@@ -1,6 +1,7 @@
 # FastAPI Users
 
 Run FastAPI Users SQLAlchemy example with `docker-compose.yaml` and a `Dockerfile`
+using Bearer Token transport with JWT Strategy
 
 References:
 - https://fastapi-users.github.io/fastapi-users/configuration/full-example/#sqlalchemy

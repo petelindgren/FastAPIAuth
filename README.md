@@ -101,6 +101,14 @@ References:
 See **`examples/`** of different ways to configure `Dockerfile` and `docker-compose.yaml`
 to start a FastAPI project
 
+### Tips
+- If your local Docker environment gets cluttered run this shell script
+  to remove all Docker Containers, Volumes and Images
+
+  ```sh
+  ./bin/clean_up_docker_resources.sh
+  ```
+
 
 ### Testing Dockerfile(s)
 

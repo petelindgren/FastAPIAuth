@@ -123,6 +123,12 @@ to start a FastAPI project
   docker system prune -a
   ```
 
+- Find **`site-packages`** directory in a Docker Container
+
+  ```sh
+  python -m site
+  ```
+
 
 ### Testing Dockerfile(s)
 

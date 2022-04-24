@@ -31,6 +31,7 @@ exclude = '''
   | \.tox
   | \.venv
   | _build
+  | __pypackages__
   | buck-out
   | build
   | dist

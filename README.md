@@ -21,7 +21,7 @@ Use pre-commit hooks to enforce code formatting checks
 | autoflake | https://pypi.org/project/autoflake/ | autoflake removes unused imports and unused variables from Python code. It makes use of pyflakes to do this. |
 | black | https://github.com/psf/black | |
 | flake8 | https://flake8.pycqa.org/en/latest/ | Your Tool For Style Guide Enforcement. |
-| isort | https://pycqa.github.io/isort/docs/configuration/pre-commit.html | Import Sort |
+| isort | https://pycqa.github.io/isort/docs/configuration/pre-commit.html | Sort imports |
 
 
 - Install **`pre-commit`**
@@ -37,6 +37,24 @@ Use pre-commit hooks to enforce code formatting checks
 
   ```sh
   pre-commit run --all-files
+  ```
+
+  Sometimes you want to **`pre-commit`** hooks because code is a work in progress
+
+  ```sh
+  git commit -m "Some comments" --no-verify
+  ```
+
+
+- Install **`isort`**
+
+  ``sh
+  brew install isort
+  ```
+
+  Allows you to run isort on specific files
+  ```
+  isort -m3 --trailing-comma -w88 docker-compose.yaml
   ```
 
 

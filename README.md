@@ -117,6 +117,12 @@ to start a FastAPI project
   ./bin/clean_up_docker_resources.sh
   ```
 
+- If you Docker environment goes really, prune everything
+
+  ```sh
+  docker system prune -a
+  ```
+
 
 ### Testing Dockerfile(s)
 

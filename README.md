@@ -74,6 +74,8 @@ References:
 
 
 ### Install Python Development Master (PDM)
+Documentation: https://pdm.fming.dev/
+
 - Install PDM on computer
 
   ```sh
@@ -94,6 +96,12 @@ References:
 
   ```sh
   pdm run python3 -m uvicorn main:app --reload
+  ```
+
+- Export `pdm.lock` packages to `requirements.txt` file
+
+  ```sh
+  pdm export -f requirements --without-hashes -o requirements.txt
   ```
 
 

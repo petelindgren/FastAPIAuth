@@ -1,5 +1,6 @@
-# Ignore the examples folders
+# Ignore project folders and files that might be created locally
 examples
+**/test.db
 
 # Ignore .git and .cache folders
 .git

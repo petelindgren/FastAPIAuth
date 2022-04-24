@@ -10,7 +10,52 @@ This is a demo project use to learn new skills.
 
 
 ## Set Up Development Environment
+Here are some tips for setting up your local machine for development.
 
+### Code Formatters
+Install Code Formatters to help maintain a consistent look to the code.
+Use pre-commit hooks to enforce code formatting checks
+
+| Package Name | URL | Description |
+|:---|:---|:---|
+| autoflake | https://pypi.org/project/autoflake/ | autoflake removes unused imports and unused variables from Python code. It makes use of pyflakes to do this. |
+| black | https://github.com/psf/black | |
+| flake8 | https://flake8.pycqa.org/en/latest/ | Your Tool For Style Guide Enforcement. |
+| isort | https://pycqa.github.io/isort/docs/configuration/pre-commit.html | Import Sort |
+
+
+- Install **`pre-commit`**
+  **`pre-commit`** should already be installed with `Pipfile` or `PDM` but you will still
+  need to install git hooks in the `.git/` project directory.
+
+  ```sh
+  # Run this to install .pre-commit-config.yaml
+  pre-commit install
+  ```
+
+  Run **`pre-commit`** on all files:
+
+  ```sh
+  pre-commit run --all-files
+  ```
+
+
+References:
+- https://py-vscode.readthedocs.io/en/latest/files/linting.html 
+- https://medium.com/staqu-dev-logs/keeping-python-code-clean-with-pre-commit-hooks-black-flake8-and-isort-cac8b01e0ea1
+- https://github.com/microsoft/presidio/issues/317
+- https://black.readthedocs.io/en/stable/compatible_configs.html
+
+
+
+- Using Visual Studio Code
+
+  For convenience, build a virtual environment from the Pipfile.
+  This virtual environment can then be added to Visual Studio Code
+  Ref: https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment
+
+
+### Install Python Development Master (PDM)
 - Install PDM on computer
 
   ```sh

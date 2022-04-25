@@ -8,6 +8,7 @@ fastapi = "*"
 fastapi-users = {extras = ["sqlalchemy2"], version = "*"}
 uvicorn = {extras = ["standard"], version = "*"}
 aiosqlite = "*"
+passlib = {extras = ["bcrypt"], version = "*"}
 
 [dev-packages]
 

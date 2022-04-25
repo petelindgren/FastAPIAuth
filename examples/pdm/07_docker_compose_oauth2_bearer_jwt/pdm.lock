@@ -161,7 +161,7 @@ extras = ["bcrypt"]
 summary = "comprehensive password hashing framework supporting over 30 schemes"
 dependencies = [
     "bcrypt>=3.1.0",
-    "passlib==1.7.4",
+    "passlib",
 ]
 
 [[package]]
@@ -264,7 +264,7 @@ dependencies = [
 
 [metadata]
 lock_version = "3.1"
-content_hash = "sha256:e7800b20bad78b69bb629cbdc59a1697f10744c1b19ae15bfd325e99b5396fdb"
+content_hash = "sha256:e56d170b055589efc9f7bd488d249ca2dc90caaae5de61e7c061f38c1ec677f2"
 
 [metadata.files]
 "aiosqlite 0.17.0" = [

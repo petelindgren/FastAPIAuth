@@ -1,7 +1,7 @@
 # FastAPI Users
 
 Run FastAPI Users SQLAlchemy example with `docker-compose.yaml` and a `Dockerfile`
-using Bearer Token Transport and a Fake Database Strategy.
+using OAuth2 Bearer Token Transport and JWT Strategy.
 
 This FastAPI application fakes the database.
 

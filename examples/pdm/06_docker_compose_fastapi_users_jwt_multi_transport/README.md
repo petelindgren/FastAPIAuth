@@ -1,7 +1,7 @@
 # FastAPI Users
 
 Run FastAPI Users SQLAlchemy example with `docker-compose.yaml` and a `Dockerfile`
-using Bearer Token transport with JWT Strategy
+using Bearer Token or Cookie transport with JWT Strategy
 
 References:
 - https://fastapi-users.github.io/fastapi-users/configuration/full-example/#sqlalchemy
@@ -29,8 +29,8 @@ References:
   ```
 
   >```
-  >CONTAINER ID   IMAGE                            COMMAND                  CREATED          STATUS          PORTS                  NAMES
-  >819523e5d9e0   docker-compose-multifile-image   "uvicorn app.main:ap…"   27 seconds ago   Up 26 seconds   0.0.0.0:80->8000/tcp   04_docker_compose_hello_world_app_api_1
+  >CONTAINER ID   IMAGE                                                  COMMAND            CREATED         STATUS         PORTS                  NAMES
+  >8ee6da49059c   pdm-docker-compose-fastapi-users-jwt-multi-transport   "python -m main"   4 seconds ago   Up 2 seconds   0.0.0.0:80->8000/tcp   06_docker_compose_fastapi_users_jwt_multi_transport_api_1
   >```
 
   Reference: https://docs.docker.com/engine/reference/commandline/ps/
@@ -57,8 +57,8 @@ References:
   Reference: https://docs.docker.com/engine/reference/commandline/image/
 
   >```
-  >REPOSITORY                        TAG       IMAGE ID       CREATED          SIZE
-  >docker-compose-multifile-image    latest    63ce511ac655   33 minutes ago   179MB
+  >REPOSITORY                                             TAG       IMAGE ID       CREATED          SIZE
+  >pdm-docker-compose-fastapi-users-jwt-multi-transport   latest    edc9b2c09781   55 seconds ago   193MB
   >```
 
 

@@ -1,17 +1,13 @@
 # FastAPI Users
 
 Run FastAPI Users SQLAlchemy example with `docker-compose.yaml` and a `Dockerfile`
-using Bearer Token transport with JWT Strategy
+using Bearer Token or Cookie transport with JWT Strategy
+
+This FastAPI application uses **`sqlite`** to power the database.
 
 References:
 - https://fastapi-users.github.io/fastapi-users/configuration/full-example/#sqlalchemy
 - https://github.com/fastapi-users/fastapi-users/tree/master/examples/sqlalchemy
-
-## Run Application with PDM
-
-  ```sh
-  pdm run python3 -m uvicorn app.app:app --reload
-  ```
 
 ## Builds, (re)creates, starts, and attaches to containers for a service.
 
@@ -29,8 +25,8 @@ References:
   ```
 
   >```
-  >CONTAINER ID   IMAGE                            COMMAND                  CREATED          STATUS          PORTS                  NAMES
-  >819523e5d9e0   docker-compose-multifile-image   "uvicorn app.main:ap…"   27 seconds ago   Up 26 seconds   0.0.0.0:80->8000/tcp   04_docker_compose_hello_world_app_api_1
+  >CONTAINER ID   IMAGE                                              COMMAND            CREATED          STATUS          PORTS                  NAMES
+  >60715dc16b22   docker-compose-fastapi-users-jwt-multi-transport   "python -m main"   13 seconds ago   Up 13 seconds   0.0.0.0:80->8000/tcp   06_docker_compose_fastapi_users_jwt_multi_transport_api_1
   >```
 
   Reference: https://docs.docker.com/engine/reference/commandline/ps/
@@ -57,16 +53,14 @@ References:
   Reference: https://docs.docker.com/engine/reference/commandline/image/
 
   >```
-  >REPOSITORY                        TAG       IMAGE ID       CREATED          SIZE
-  >docker-compose-multifile-image    latest    63ce511ac655   33 minutes ago   179MB
+  >REPOSITORY                                         TAG       IMAGE ID       CREATED          SIZE
+  >docker-compose-fastapi-users-jwt-multi-transport   latest    04bf317bdb01   55 seconds ago   238MB
   >```
 
 
 ## Verify FastAPI is running with a Web Browser
 
   Go to web browser http://localhost/
-
-  If started with PDM, open http://localhost:8000/
 
   You should see this
 

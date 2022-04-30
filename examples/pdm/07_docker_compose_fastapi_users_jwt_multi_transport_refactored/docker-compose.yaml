@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: pdm-docker-compose-fastapi-users-jwt-bearer-db-cookie
+    image: pdm-docker-compose-fastapi-users-jwt-multi-transport_v2
     command: python -m main
     ports:
       - 80:8000

@@ -7,6 +7,12 @@ References:
 - https://fastapi-users.github.io/fastapi-users/configuration/full-example/#sqlalchemy
 - https://github.com/fastapi-users/fastapi-users/tree/master/examples/sqlalchemy
 
+## Run Application with PDM
+
+  ```sh
+  pdm run python3 -m uvicorn app.app:app --reload
+  ```
+
 ## Builds, (re)creates, starts, and attaches to containers for a service.
 
   ```sh
@@ -58,10 +64,12 @@ References:
 
 ## Verify FastAPI is running with a Web Browser
 
-  Go to web browser http://127.0.0.1/
+  Go to web browser http://localhost/
+
+  If started with PDM, open http://localhost:8000/
 
   You should see this
 
   ```
-  {"Hello":"World from MultiFile docker-compose"}
+  {"detail":"Not Found"}
   ```

@@ -1,12 +1,17 @@
 from app.db import create_db_and_tables
 from app.models import User, UserDB
-from app.users import cookie_backend, current_active_user, fast_api_users, jwt_backend
+from app.users import (
+    bearer_backend,
+    cookie_backend,
+    current_active_user,
+    fast_api_users,
+)
 from fastapi import Depends, FastAPI
 
 app = FastAPI()
 
 app.include_router(
-    fast_api_users.get_auth_router(jwt_backend), prefix="/auth/jwt", tags=["auth"]
+    fast_api_users.get_auth_router(bearer_backend), prefix="/auth/jwt", tags=["auth"]
 )
 app.include_router(
     fast_api_users.get_auth_router(cookie_backend), prefix="/auth/cookie", tags=["auth"]

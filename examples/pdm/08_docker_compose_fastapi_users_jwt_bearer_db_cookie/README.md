@@ -12,7 +12,7 @@ References:
 ## Run Application with PDM
 
   ```sh
-  pdm run python3 -m uvicorn app.app:app --reload
+  pdm run python3 -m uvicorn app.main:app --reload
   ```
 
 ## Builds, (re)creates, starts, and attaches to containers for a service.

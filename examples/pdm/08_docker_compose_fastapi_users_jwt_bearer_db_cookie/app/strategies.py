@@ -1,8 +1,9 @@
 from typing import List
 
-from app.db import get_access_token_db
-from app.models import AccessToken, UserCreate, UserDB
-from app.settings import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, SECRET_KEY
+from app.core.settings import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, SECRET_KEY
+from app.db.base import get_access_token_db
+from app.db.models.auth import AccessToken
+from app.db.models.users import UserCreate, UserDB
 from fastapi import Depends
 from fastapi_users.authentication import JWTStrategy
 from fastapi_users.authentication.strategy.db import (

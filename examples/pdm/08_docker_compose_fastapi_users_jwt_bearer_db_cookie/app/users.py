@@ -1,14 +1,14 @@
 from typing import Optional
 
-from app.db import get_user_db
-from app.models import User, UserCreate, UserDB, UserUpdate
-from app.settings import SECRET_KEY
+from app.core.settings import SECRET_KEY
+from app.db.base import get_user_db
+from app.db.models.users import User, UserCreate, UserDB, UserUpdate
 from app.strategies import get_database_strategy, get_jwt_strategy
 from app.transports import bearer_transport, cookie_transport
 from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, FastAPIUsers
 from fastapi_users.authentication import AuthenticationBackend
-from fastapi_users.db import SQLAlchemyUserDatabase
+from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
 
 
 class UserManager(BaseUserManager[UserCreate, UserDB]):

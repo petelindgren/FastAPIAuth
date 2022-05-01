@@ -1,4 +1,4 @@
-from app.settings import ACCESS_TOKEN_EXPIRE_MINUTES
+from app.core.settings import ACCESS_TOKEN_EXPIRE_MINUTES
 from fastapi_users.authentication import BearerTransport, CookieTransport
 
 # https://fastapi-users.github.io/fastapi-users/usage/current-user/#dynamically-enable-authentication-backends

@@ -65,25 +65,27 @@ References:
 - https://black.readthedocs.io/en/stable/compatible_configs.html
 
 
+### Setting up Mac OS
 
-- Using Visual Studio Code
-
-  For convenience, build a virtual environment from the Pipfile.
-  This virtual environment can then be added to Visual Studio Code
-  Ref: https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment
-
-
-### Install Python Development Master (PDM)
-Documentation: https://pdm.fming.dev/
-
-- Install PDM on computer
+- Install brew packages
 
   ```sh
+  brew install isort
   brew install rust
   brew install openssl@1.1
   brew install pdm
   ```
 
+
+### Visual Studio Code
+
+For convenience, build a virtual environment from the Pipfile.
+This virtual environment can then be added to Visual Studio Code
+Ref: https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment
+
+
+### Install Python Development Master (PDM)
+Documentation: https://pdm.fming.dev/
 
 ### Set up PDM
 - Install PDM local environment
@@ -109,6 +111,7 @@ Documentation: https://pdm.fming.dev/
 See **`examples/`** of different ways to configure `Dockerfile` and `docker-compose.yaml`
 to start a FastAPI project
 
+
 ### Tips
 - If your local Docker environment gets cluttered run this shell script
   to remove all Docker Containers, Volumes and Images
@@ -128,6 +131,17 @@ to start a FastAPI project
   ```sh
   python -m site
   ```
+
+### Debugging SQLite Databases
+
+- Install [DB Browser for SQLite](https://sqlitebrowser.org/) for reading SQLite DB files
+
+  ```sh
+  brew install --cask db-browser-for-sqlite
+  ```
+
+- On Mac OS you can now find **DB Browser for SQLite** in your Applications
+
 
 
 ### Testing Dockerfile(s)

@@ -40,7 +40,10 @@ async def authenticated_route(user: UserDB = Depends(current_active_user)):
 
 @url_router.get("/protected-route")
 def protected_route(user: User = Depends(current_active_user)):
-    return f"Hello, {user.email}. You are authenticated using JWT Strategy transported by Cookie or Bearer."
+    return (
+        f"Hello, {user.email}. You are authenticated using JWT Strategy transported by Bearer"
+        f" or DB Strategy transported by Cookie."
+    )
 
 
 @url_router.get("/protected-route-only-jwt")

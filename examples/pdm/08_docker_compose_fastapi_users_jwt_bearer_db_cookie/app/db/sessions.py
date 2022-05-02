@@ -1,5 +1,5 @@
 # https://www.fastapitutorial.com/blog/database-connection-fastapi/
-from typing import Generator
+from typing import AsyncGenerator
 
 from app.core.settings import ASYNC_SQLALCHEMY_DATABASE_URL
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
@@ -29,9 +29,6 @@ AsyncSessionLocal = sessionmaker(
 
 
 # https://www.fastapitutorial.com/blog/dependencies-in-fastapi/
-def get_db_session() -> Generator:
-    try:
-        db_session = AsyncSessionLocal()
-        yield db_session
-    finally:
-        db_session.close()
+async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
+    async with AsyncSessionLocal() as session:
+        yield session

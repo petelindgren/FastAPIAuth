@@ -1,10 +1,9 @@
 # https://www.fastapitutorial.com/blog/database-connection-fastapi/
-from sqlalchemy import create_engine
+from typing import Generator
+
+from app.core.settings import ASYNC_SQLALCHEMY_DATABASE_URL
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
-
-# from core.config import settings
-
 
 # SQLALCHEMY_DATABASE_URL = settings.DATABASE_URL
 # engine = create_async_engine(SQLALCHEMY_DATABASE_URL)
@@ -13,8 +12,6 @@ from sqlalchemy.orm import sessionmaker
 # uncomment below lines if you would like to use sqlite and comment above 2 lines of SQLALCHEMY_DATABASE_URL AND engine
 
 
-SQLALCHEMY_DATABASE_URL = "sqlite+aiosqlite:///./test.db"
-
 # https://docs.sqlalchemy.org/en/14/core/engines.html#engine-creation-api
 # db_engine = create_engine(
 #     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
@@ -22,9 +19,19 @@ SQLALCHEMY_DATABASE_URL = "sqlite+aiosqlite:///./test.db"
 # session_maker = sessionmaker(autocommit=False, autoflush=False, bind=db_engine)
 
 # https://docs.sqlalchemy.org/en/14/orm/extensions/asyncio.html#engine-api-documentation
-db_engine = create_async_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+# https://docs.sqlalchemy.org/en/14/_modules/examples/asyncio/async_orm.html
+
+async_db_engine = create_async_engine(ASYNC_SQLALCHEMY_DATABASE_URL, echo=True)
+# expire_on_commit=False will prevent attributes from being expired after commit.
+AsyncSessionLocal = sessionmaker(
+    async_db_engine, expire_on_commit=False, class_=AsyncSession
 )
-async_session_maker = sessionmaker(
-    db_engine, class_=AsyncSession, expire_on_commit=False
-)
+
+
+# https://www.fastapitutorial.com/blog/dependencies-in-fastapi/
+def get_db_session() -> Generator:
+    try:
+        db_session = AsyncSessionLocal()
+        yield db_session
+    finally:
+        db_session.close()

@@ -2,7 +2,7 @@ from typing import Optional
 
 from app.core.settings import SECRET_KEY
 from app.db.base import get_user_db
-from app.db.models.users import User, UserCreate, UserDB, UserUpdate
+from app.db.schemas import User, UserCreate, UserDB, UserUpdate
 from app.strategies import get_database_strategy, get_jwt_strategy
 from app.transports import bearer_transport, cookie_transport
 from fastapi import Depends, Request

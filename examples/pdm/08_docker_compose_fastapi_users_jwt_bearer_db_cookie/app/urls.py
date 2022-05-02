@@ -1,4 +1,4 @@
-from app.db.models.users import User, UserDB
+from app.db.schemas import User, UserDB
 from app.users import (
     bearer_backend,
     cookie_backend,

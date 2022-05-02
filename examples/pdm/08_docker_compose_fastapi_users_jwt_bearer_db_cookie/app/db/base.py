@@ -1,10 +1,10 @@
 # https://www.fastapitutorial.com/blog/database-connection-fastapi/
-from typing import Any, AsyncGenerator
+from typing import AsyncGenerator
 
 from app.db.base_classes import Base
-from app.db.models.auth import AccessToken, AccessTokenTable
-from app.db.models.users import User, UserCreate, UserDB, UserTable, UserUpdate
-from app.db.sessions import async_session_maker, db_engine
+from app.db.models import AccessTokenTable, UserTable
+from app.db.schemas import AccessToken, UserDB
+from app.db.sessions import async_db_engine, get_db_session
 from fastapi import Depends
 from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
 from fastapi_users_db_sqlalchemy.access_token import SQLAlchemyAccessTokenDatabase
@@ -12,12 +12,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 
 async def create_db_and_tables():
-    async with db_engine.begin() as conn:
+    async with async_db_engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
 
 
 async def get_async_session() -> AsyncGenerator[AsyncSession, None]:
-    async with async_session_maker() as session:
+    async with get_db_session() as session:
         yield session
 
 

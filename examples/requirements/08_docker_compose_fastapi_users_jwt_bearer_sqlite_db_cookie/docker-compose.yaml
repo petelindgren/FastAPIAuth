@@ -7,7 +7,7 @@ services:
     build:
       context: .
       dockerfile: ./app/Dockerfile
-    image: docker-compose-fastapi-users-jwt-bearer-db-cookie
+    image: docker-compose-fastapi-users-jwt-bearer-sqlite-db-cookie
     command: python -m main
     ports:
       - 80:8000

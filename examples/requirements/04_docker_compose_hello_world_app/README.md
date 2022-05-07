@@ -1,13 +1,19 @@
-# docker-compose with Single File FastAPI
+# docker-compose with FastAPI Project
 
-This example demonstrates how to build and run a single file FastAPI application
+This example demonstrates how to build and run a FastAPI application using a directory structure
 using `docker-compose.yaml` and a `Dockerfile`
 
 
 ## Builds, (re)creates, starts, and attaches to containers for a service.
 
   ```sh
-  docker-compose up -d
+  docker-compose up --build
+  ```
+
+  or run _detached_
+
+  ```sh
+  docker-compose up -d --build
   ```
 
    Reference: https://docs.docker.com/compose/reference/up/
@@ -15,13 +21,15 @@ using `docker-compose.yaml` and a `Dockerfile`
 
 ## List Docker containers
 
+  Verify the Docker Container named `pipenv-example04-container` is running with `ps`
+
   ```sh
   docker ps
   ```
 
   >```
-  >CONTAINER ID   IMAGE                            COMMAND                  CREATED          STATUS          PORTS                  NAMES
-  >819523e5d9e0   docker-compose-multifile-image   "uvicorn app.main:ap…"   27 seconds ago   Up 26 seconds   0.0.0.0:80->8000/tcp   04_docker_compose_hello_world_app_api_1
+  >CONTAINER ID   IMAGE                    COMMAND                  CREATED          STATUS          PORTS                  NAMES
+  >4a9fc231cb01   pipenv-example04-image   "uvicorn app.main:ap…"   14 seconds ago   Up 13 seconds   0.0.0.0:80->8000/tcp   pipenv-example04-container
   >```
 
   Reference: https://docs.docker.com/engine/reference/commandline/ps/
@@ -30,7 +38,7 @@ using `docker-compose.yaml` and a `Dockerfile`
 ## Stops containers and removes containers, networks, volumes, and images created by up.
 
   ```sh
-  docker-compose down
+  docker-compose down -v
   ```
 
   Reference: https://docs.docker.com/compose/reference/down/
@@ -38,18 +46,17 @@ using `docker-compose.yaml` and a `Dockerfile`
 
 ## Manage images
 
-  Verify the Docker Image exists with `ls`
+  Verify the Docker Image `pipenv-example04-image` exists with `ls`
 
   ```sh
   docker image ls
-  docker image ls | grep docker-compose-multifile-image
   ```
 
   Reference: https://docs.docker.com/engine/reference/commandline/image/
 
   >```
-  >REPOSITORY                        TAG       IMAGE ID       CREATED          SIZE
-  >docker-compose-multifile-image    latest    63ce511ac655   33 minutes ago   179MB
+  >REPOSITORY                 TAG       IMAGE ID       CREATED              SIZE
+  >pipenv-example04-image     latest    1a5b5d220b09   About a minute ago   247MB
   >```
 
 
@@ -60,5 +67,5 @@ using `docker-compose.yaml` and a `Dockerfile`
   You should see this
 
   ```
-  {"Hello":"World from MultiFile docker-compose"}
+  {"Hello": "World from MultiFile docker-compose"}
   ```

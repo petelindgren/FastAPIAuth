@@ -6,8 +6,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: docker-compose-multifile-image
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000
+    image: pipenv-example04-image
+    container_name: pipenv-example04-container
+    command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
     ports:
       - 80:8000
     networks:

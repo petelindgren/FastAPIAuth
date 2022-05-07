@@ -1,15 +1,12 @@
-from typing import List
-
-from app.core.settings import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, SECRET_KEY
-from app.db.base import get_access_token_db
-from app.db.schemas import UserCreate, UserDB
-from app.db.schemas.auth import AccessToken
 from fastapi import Depends
 from fastapi_users.authentication import JWTStrategy
 from fastapi_users.authentication.strategy.db import (
     AccessTokenDatabase,
     DatabaseStrategy,
 )
+from src.core.auth.schemas import AccessToken
+from src.core.storage.base import get_access_token_db
+from src.settings import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, SECRET_KEY
 
 
 class Session:
@@ -26,7 +23,11 @@ def get_jwt_strategy() -> JWTStrategy:
 
 def get_database_strategy(
     access_token_db: AccessTokenDatabase[AccessToken] = Depends(get_access_token_db),
-) -> DatabaseStrategy[UserCreate, UserDB, AccessToken]:
+) -> DatabaseStrategy:
+    """
+    Reference:
+    * https://fastapi-users.github.io/fastapi-users/10.0/configuration/authentication/strategies/database/?h=get_database_strategy#strategy
+    """
     return DatabaseStrategy(
         access_token_db, lifetime_seconds=60 * ACCESS_TOKEN_EXPIRE_MINUTES
     )

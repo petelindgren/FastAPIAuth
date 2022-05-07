@@ -1,17 +1,16 @@
 [[source]]
+name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
-name = "pypi"
 
 [packages]
 fastapi = "*"
 pydantic = "*"
 uvicorn = "*"
-fastapi-users = {extras = ["sqlalchemy2"], version = "*"}
+black = "*"
+fastapi-users = {extras = ["sqlalchemy"], version = "*"}
 aiosqlite = "*"
-itsdangerous = "*"
-
-[dev-packages]
+sqlalchemy = "*"
 
 [requires]
 python_version = "3.9"

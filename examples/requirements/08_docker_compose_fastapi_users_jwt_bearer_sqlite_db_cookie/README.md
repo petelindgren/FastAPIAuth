@@ -1,20 +1,30 @@
 # FastAPI Users
 
 Run FastAPI Users SQLAlchemy example with `docker-compose.yaml` and a `Dockerfile`
-using two different Transport + Strategy approachs
+using two different combinations of Transport + Strategy:
 - Bearer Token Transport and JWT Strategy
 - Cookie Transport and DB Strategy
 
 This FastAPI application uses **`sqlite`** to power the database.
 
+This Example 8 has been changed from Example 7
+* Refactor the declarative `Base`
+* Use a **`sqlite`** DB Strategy
+
+
 References:
-- https://fastapi-users.github.io/fastapi-users/configuration/full-example/#sqlalchemy
-- https://github.com/fastapi-users/fastapi-users/tree/master/examples/sqlalchemy
+- https://github.com/fastapi-users/fastapi-users/tree/v10.0.2/examples/sqlalchemy
 
 ## Builds, (re)creates, starts, and attaches to containers for a service.
 
   ```sh
-  docker-compose up -d
+  docker-compose up --build
+  ```
+
+  or run _detached_
+
+  ```sh
+  docker-compose up -d --build
   ```
 
    Reference: https://docs.docker.com/compose/reference/up/
@@ -27,8 +37,8 @@ References:
   ```
 
   >```
-  >CONTAINER ID   IMAGE                                                  COMMAND            CREATED         STATUS         PORTS                  NAMES
-  >8ee6da49059c   docker-compose-fastapi-users-jwt-multi-transport       "python -m main"   4 seconds ago   Up 2 seconds   0.0.0.0:80->8000/tcp   06_docker_compose_fastapi_users_jwt_multi_transport_api_1
+  >CONTAINER ID   IMAGE                    COMMAND            CREATED         STATUS          PORTS                  NAMES
+  >d584605aaf36   pipenv-example08-image   "python -m main"   2 minutes ago   Up 40 seconds   0.0.0.0:80->8000/tcp   pipenv-example08-container
   >```
 
   Reference: https://docs.docker.com/engine/reference/commandline/ps/
@@ -49,15 +59,14 @@ References:
 
   ```sh
   docker image ls
-  docker image ls | grep docker-compose-multifile-image
   ```
 
-  Reference: https://docs.docker.com/engine/reference/commandline/image/
+  >```
+  >REPOSITORY               TAG       IMAGE ID       CREATED          SIZE
+  >pipenv-example08-image   latest    25d6b8171f89   3 minutes ago    288MB
+  >```
 
-  >```
-  >REPOSITORY                                         TAG       IMAGE ID       CREATED          SIZE
-  >docker-compose-fastapi-users-jwt-multi-transport   latest    04bf317bdb01   55 seconds ago   238MB
-  >```
+  Reference: https://docs.docker.com/engine/reference/commandline/image/
 
 
 ## Verify FastAPI is running with a Web Browser
@@ -67,5 +76,5 @@ References:
   You should see this
 
   ```
-  {"detail":"Not Found"}
+  {"root":"Analog Interface"}
   ```

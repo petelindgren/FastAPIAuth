@@ -1,8 +1,8 @@
-from app.db.base_classes import Base
-from fastapi_users_db_sqlalchemy.access_token import SQLAlchemyBaseAccessTokenTable
+from fastapi_users_db_sqlalchemy.access_token import SQLAlchemyBaseAccessTokenTableUUID
+from src.core.storage.base_classes import Base
 
 
-class AccessTokenTable(SQLAlchemyBaseAccessTokenTable, Base):
+class AccessTokenTable(SQLAlchemyBaseAccessTokenTableUUID, Base):
     """
 
     Notes

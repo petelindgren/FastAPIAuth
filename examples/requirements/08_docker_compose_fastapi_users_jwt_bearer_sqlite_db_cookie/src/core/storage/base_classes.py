@@ -1,7 +1,6 @@
 # https://www.fastapitutorial.com/blog/database-connection-fastapi/
 from typing import Any
 
-from fastapi_users_db_sqlalchemy.access_token import SQLAlchemyAccessTokenDatabase
 from sqlalchemy.ext.declarative import as_declarative, declared_attr
 
 

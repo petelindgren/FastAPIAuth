@@ -1,10 +1,9 @@
 from .auth import AccessToken
-from .users import User, UserCreate, UserDB, UserUpdate
+from .users import UserCreate, UserRead, UserUpdate
 
 __all__ = [
     AccessToken,
-    User,
+    UserRead,
     UserCreate,
     UserUpdate,
-    UserDB,
 ]

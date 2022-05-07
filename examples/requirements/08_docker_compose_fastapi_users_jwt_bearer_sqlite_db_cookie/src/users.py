@@ -1,32 +1,33 @@
+import uuid
 from typing import Optional
 
-from app.core.settings import SECRET_KEY
-from app.db.base import get_user_db
-from app.db.schemas import User, UserCreate, UserDB, UserUpdate
-from app.strategies import get_database_strategy, get_jwt_strategy
-from app.transports import bearer_transport, cookie_transport
 from fastapi import Depends, Request
-from fastapi_users import BaseUserManager, FastAPIUsers
+from fastapi_users import BaseUserManager, FastAPIUsers, UUIDIDMixin
 from fastapi_users.authentication import AuthenticationBackend
+
+# Imports "from fastapi_users.db" fail, use "from fastapi_users_db_sqlalchemy"
 from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
+from src.core.auth.models import User
+from src.core.storage.base import get_user_db
+from src.core.strategies import get_database_strategy, get_jwt_strategy
+from src.core.transports import bearer_transport, cookie_transport
+from src.settings import SECRET_KEY
 
 
-class UserManager(BaseUserManager[UserCreate, UserDB]):
-    user_db_model = UserDB
-
+class UserManager(UUIDIDMixin, BaseUserManager[User, uuid.UUID]):
     reset_password_token_secret = SECRET_KEY
     verification_token_secret = SECRET_KEY
 
-    async def on_after_register(self, user: UserDB, request: Optional[Request] = None):
+    async def on_after_register(self, user: User, request: Optional[Request] = None):
         print(f"User {user.id} has registered.")
 
     async def on_after_forgot_password(
-        self, user: UserDB, token: str, request: Optional[Request] = None
+        self, user: User, token: str, request: Optional[Request] = None
     ):
         print(f"User {user.id} has forgot their password. Reset token: {token}")
 
     async def on_after_request_verify(
-        self, user: UserDB, token: str, request: Optional[Request] = None
+        self, user: User, token: str, request: Optional[Request] = None
     ):
         print(f"Verification requested for user {user.id}. Verification token: {token}")
 
@@ -59,10 +60,6 @@ async def get_enabled_backends(request: Request):
 fast_api_users = FastAPIUsers(
     get_user_manager,
     [cookie_backend, bearer_backend],
-    User,
-    UserCreate,
-    UserUpdate,
-    UserDB,
 )
 
 current_active_user = fast_api_users.current_user(

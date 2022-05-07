@@ -1,8 +1,9 @@
-from app.db.base_classes import Base
-from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTable
+# Imports "from fastapi_users.db" fail, use "from fastapi_users_db_sqlalchemy"
+from fastapi_users_db_sqlalchemy import SQLAlchemyBaseUserTableUUID
+from src.core.storage.base_classes import Base
 
 
-class UserTable(SQLAlchemyBaseUserTable, Base):
+class User(SQLAlchemyBaseUserTableUUID, Base):
     """
 
     Notes

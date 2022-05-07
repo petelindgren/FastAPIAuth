@@ -6,7 +6,7 @@ with a `Dockerfile`
 
 ## Build an image from a Dockerfile
 
-  Build the Docker Image
+  Build the Docker Image `dockerfile-singlefile-image`
 
   ```sh
   docker build -t dockerfile-singlefile-image .
@@ -17,10 +17,9 @@ with a `Dockerfile`
 
 ## Manage images
 
-  Verify the Docker Image exists with `ls`
+  Verify the Docker Image `dockerfile-singlefile-image` exists with `ls`
 
   ```sh
-  docker image ls
   docker image ls | grep dockerfile-singlefile-image
   ```
 
@@ -34,7 +33,7 @@ with a `Dockerfile`
 
 ## Run a command in a new container
 
-  Start the Docker Image in a new Container
+  Start the Docker Image `dockerfile-singlefile-image` in a new Container `dockerfile-singlefile-container`
 
   ```sh
   docker run -d --name dockerfile-singlefile-container  -p 80:80 dockerfile-singlefile-image

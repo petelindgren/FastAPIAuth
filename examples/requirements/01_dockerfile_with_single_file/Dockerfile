@@ -1,14 +1,16 @@
-# https://fastapi.tiangolo.com/deployment/docker/#build-a-docker-image-with-a-single-file-fastapi
+# https://jonathanmeier.io/using-pipenv-with-docker/
 FROM python:3.9-slim
 
-WORKDIR /code
+RUN pip install pipenv
 
-COPY ./requirements.txt /code/requirements.txt
+ENV PROJECT_DIR /code
 
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+WORKDIR ${PROJECT_DIR}
 
-#
-COPY ./main.py /code/
+COPY Pipfile Pipfile.lock ${PROJECT_DIR}/
 
-#
+RUN pipenv install --system --deploy
+
+COPY ./main.py ${PROJECT_DIR}/
+
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]

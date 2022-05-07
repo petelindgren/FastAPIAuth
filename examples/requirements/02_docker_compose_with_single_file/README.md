@@ -7,7 +7,13 @@ using `docker-compose.yaml` and a `Dockerfile`
 ## Builds, (re)creates, starts, and attaches to containers for a service.
 
   ```sh
-  docker-compose up -d
+  docker-compose up --build
+  ```
+
+  or run _detached_
+
+  ```sh
+  docker-compose up -d --build
   ```
 
    Reference: https://docs.docker.com/compose/reference/up/
@@ -15,13 +21,15 @@ using `docker-compose.yaml` and a `Dockerfile`
 
 ## List Docker containers
 
+  Verify the Docker Container named `pipenv-example02-container` is running with `ps`
+
   ```sh
   docker ps
   ```
 
   >```
-  >CONTAINER ID   IMAGE                             COMMAND                  CREATED         STATUS         PORTS                  NAMES
-  >4b5b981c157c   docker-compose-singlefile-image   "uvicorn main:app --…"   3 seconds ago   Up 2 seconds   0.0.0.0:80->8000/tcp   02_docker_compose_with_single_file_api_1
+  >CONTAINER ID   IMAGE                    COMMAND                  CREATED          STATUS          PORTS                  NAMES
+  >81df4bde94e5   pipenv-example02-image   "uvicorn main:app --…"   24 seconds ago   Up 23 seconds   0.0.0.0:80->8000/tcp   pipenv-example02-container
   >```
 
   Reference: https://docs.docker.com/engine/reference/commandline/ps/
@@ -30,7 +38,7 @@ using `docker-compose.yaml` and a `Dockerfile`
 ## Stops containers and removes containers, networks, volumes, and images created by up.
 
   ```sh
-  docker-compose down
+  docker-compose down -v
   ```
 
   Reference: https://docs.docker.com/compose/reference/down/
@@ -38,18 +46,17 @@ using `docker-compose.yaml` and a `Dockerfile`
 
 ## Manage images
 
-  Verify the Docker Image exists with `ls`
+  Verify the Docker Image `pipenv-example02-image` exists with `ls`
 
   ```sh
   docker image ls
-  docker image ls | grep docker-compose-singlefile-image
   ```
 
   Reference: https://docs.docker.com/engine/reference/commandline/image/
 
   >```
-  >REPOSITORY                        TAG       IMAGE ID       CREATED          SIZE
-  >docker-compose-singlefile-image   latest    ace9d593ccba   22 minutes ago   179MB
+  >REPOSITORY               TAG       IMAGE ID       CREATED         SIZE
+  >pipenv-example02-image   latest    365992878f9b   2 minutes ago   247MB
   >```
 
 

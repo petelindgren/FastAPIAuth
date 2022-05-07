@@ -1,15 +1,15 @@
-# Dockerfile with Multi File FastAPI App
+# Dockerfile with a FastAPI Project
 
-This example demonstrates how to build and run a single file FastAPI application
+This example demonstrates how to build and run a FastAPI application using a directory structure
 with a `Dockerfile`
 
 
 ## Build an image from a Dockerfile
 
-  Build the Docker Image
+  Build the Docker Image `dockerfile-project-image`
 
   ```sh
-  docker build -t dockerfile-multifile-image .
+  docker build -t dockerfile-project-image .
   ```
 
   Reference: https://docs.docker.com/engine/reference/commandline/build/
@@ -17,27 +17,26 @@ with a `Dockerfile`
 
 ## Manage images
 
-  Verify the Docker Image exists with `ls`
+  Verify the Docker Image `dockerfile-project-image` exists with `ls`
 
   ```sh
   docker image ls
-  docker image ls | grep dockerfile-multifile-image
   ```
 
   Reference: https://docs.docker.com/engine/reference/commandline/image/
 
   >```
-  >REPOSITORY                        TAG       IMAGE ID       CREATED          SIZE
-  >dockerfile-multifile-image        latest    1036351ef505   4 minutes ago    179MB
+  >REPOSITORY                 TAG       IMAGE ID       CREATED          SIZE
+  >dockerfile-project-image   latest    efbcb8a7c9b3   6 seconds ago    247MB
   >```
 
 
 ## Run a command in a new container
 
-  Start the Docker Image in a new Container
+  Start the Docker Image `dockerfile-project-image` in a new Container `dockerfile-project-container`
 
   ```sh
-  docker run -d --name dockerfile-multifile-container  -p 80:80 dockerfile-multifile-image
+  docker run -d --name dockerfile-project-container -p 80:80 dockerfile-project-image
   ```
 
   Reference: https://docs.docker.com/engine/reference/commandline/run/
@@ -48,13 +47,13 @@ with a `Dockerfile`
 
     Example Message:
   
-    >docker: Error response from daemon: Conflict. The container name "/dockerfile-multifile-container" is already in use by container "d1190b593f10475ff4b54705442decbad8ae51b93869571266be00a320200ff3". You have to remove (or rename) that container to be able to reuse that name.
+    >docker: Error response from daemon: Conflict. The container name "/dockerfile-project-container" is already in use by container "d1190b593f10475ff4b54705442decbad8ae51b93869571266be00a320200ff3". You have to remove (or rename) that container to be able to reuse that name.
 
     Solution: Stop and Remove existing container
 
     ```sh
-    docker container stop dockerfile-multifile-container
-    docker container rm dockerfile-multifile-container
+    docker container stop dockerfile-project-container
+    docker container rm dockerfile-project-container
     ```
 
 
@@ -68,7 +67,7 @@ with a `Dockerfile`
 
   >```
   >CONTAINER ID   IMAGE                         COMMAND                  CREATED              STATUS              PORTS                NAMES
-  >4d6e1f60e125   dockerfile-multifile-image   "uvicorn main:app --…"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   dockerfile-multifile-container
+  >4d6e1f60e125   dockerfile-project-image   "uvicorn main:app --…"   About a minute ago   Up About a minute   0.0.0.0:80->80/tcp   dockerfile-project-container
   >```
 
   Reference: https://docs.docker.com/engine/reference/commandline/ps/

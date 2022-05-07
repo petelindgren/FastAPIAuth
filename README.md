@@ -73,9 +73,12 @@ References:
   brew install isort
   brew install rust
   brew install openssl@1.1
-  brew install pdm
+  brew install postgresql@13
   ```
 
+  Notes: As of 5/2/2022 avoid openssl@3 because of possible incompatibilities with
+         packages that use openssl.
+         Install postgresql@13 for pg_config
 
 ### Visual Studio Code
 
@@ -84,26 +87,58 @@ This virtual environment can then be added to Visual Studio Code
 Ref: https://code.visualstudio.com/docs/python/environments#_select-and-activate-an-environment
 
 
-### Install Python Development Master (PDM)
+### Working with Python Development Master (PDM)
 Documentation: https://pdm.fming.dev/
 
-### Set up PDM
-- Install PDM local environment
+- Install `PDM` on macOS
 
   ```sh
+  brew install pdm
   pdm install
   ```
 
-- Run application locally by running:
+- Start a Python application with `PDM`
 
   ```sh
   pdm run python3 -m uvicorn main:app --reload
+  ```
+
+- Lock a `PDM` configuration
+
+  ```sh
+  pdm lock
   ```
 
 - Export `pdm.lock` packages to `requirements.txt` file
 
   ```sh
   pdm export -f requirements --without-hashes -o requirements.txt
+  ```
+
+### Working with pipenv
+
+- Install `pipenv` on macOS
+
+  ```sh
+  brew install pipenv
+  ```
+
+- Start a Python application with `pipenv`
+
+  ```sh
+  pipenv run python3 -m uvicorn main:app --reload
+  ```
+
+- Lock a `pipenv` configuration
+
+  ```sh
+  pipenv lock
+  ```
+
+- Export `pipenv.lock` packages to `requirements.txt` file
+
+  ```sh
+  pipenv lock -r > requirements.txt
   ```
 
 

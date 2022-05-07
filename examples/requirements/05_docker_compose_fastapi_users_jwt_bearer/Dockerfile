@@ -1,15 +1,16 @@
-# https://fastapi.tiangolo.com/deployment/docker/#dockerfile
+# https://jonathanmeier.io/using-pipenv-with-docker/
 FROM python:3.9-slim
 
-WORKDIR /src
+RUN pip install pipenv
 
-COPY ./requirements.txt /src/requirements.txt
+ENV PROJECT_DIR /src
 
-RUN pip install --no-cache-dir --upgrade -r /src/requirements.txt
+WORKDIR ${PROJECT_DIR}
 
-COPY . /src/
+COPY Pipfile Pipfile.lock ${PROJECT_DIR}/
 
-# Use entrypoint to keep Docker container running for debugging
-# ENTRYPOINT ["tail", "-f", "/dev/null"]
+RUN pipenv install --system --deploy
+
+COPY . ${PROJECT_DIR}/
 
 EXPOSE 8000

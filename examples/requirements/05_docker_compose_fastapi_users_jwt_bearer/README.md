@@ -6,13 +6,18 @@ using Bearer Token transport with JWT Strategy.
 This FastAPI application uses **`sqlite`** to power the database.
 
 References:
-- https://fastapi-users.github.io/fastapi-users/configuration/full-example/#sqlalchemy
-- https://github.com/fastapi-users/fastapi-users/tree/master/examples/sqlalchemy
+- https://github.com/fastapi-users/fastapi-users/tree/v10.0.2/examples/sqlalchemy
 
 ## Builds, (re)creates, starts, and attaches to containers for a service.
 
   ```sh
-  docker-compose up -d
+  docker-compose up --build
+  ```
+
+  or run _detached_
+
+  ```sh
+  docker-compose up -d --build
   ```
 
    Reference: https://docs.docker.com/compose/reference/up/
@@ -20,13 +25,15 @@ References:
 
 ## List Docker containers
 
+  Verify the Docker Container named `pipenv-example05-container` is running with `ps`
+
   ```sh
   docker ps
   ```
 
   >```
-  >CONTAINER ID   IMAGE                            COMMAND                  CREATED          STATUS          PORTS                  NAMES
-  >819523e5d9e0   docker-compose-multifile-image   "uvicorn app.main:ap…"   27 seconds ago   Up 26 seconds   0.0.0.0:80->8000/tcp   04_docker_compose_hello_world_app_api_1
+  >CONTAINER ID   IMAGE                    COMMAND            CREATED         STATUS          PORTS                  NAMES
+  >e7fb5bb96fb6   pipenv-example05-image   "python -m main"   5 minutes ago   Up 46 seconds   0.0.0.0:80->8000/tcp   pipenv-example05-container
   >```
 
   Reference: https://docs.docker.com/engine/reference/commandline/ps/
@@ -35,7 +42,7 @@ References:
 ## Stops containers and removes containers, networks, volumes, and images created by up.
 
   ```sh
-  docker-compose down
+  docker-compose down -v
   ```
 
   Reference: https://docs.docker.com/compose/reference/down/
@@ -43,18 +50,17 @@ References:
 
 ## Manage images
 
-  Verify the Docker Image exists with `ls`
+  Verify the Docker Image `pipenv-example05-image` exists with `ls`
 
   ```sh
   docker image ls
-  docker image ls | grep docker-compose-multifile-image
   ```
 
   Reference: https://docs.docker.com/engine/reference/commandline/image/
 
   >```
-  >REPOSITORY                        TAG       IMAGE ID       CREATED          SIZE
-  >docker-compose-multifile-image    latest    63ce511ac655   33 minutes ago   179MB
+  >REPOSITORY               TAG       IMAGE ID       CREATED          SIZE
+  >pipenv-example05-image   latest    1add01b41b16   8 minutes ago    288MB
   >```
 
 
@@ -65,5 +71,5 @@ References:
   You should see this
 
   ```
-  {"Hello":"World from MultiFile docker-compose"}
+  {"detail":"Not Found"}
   ```

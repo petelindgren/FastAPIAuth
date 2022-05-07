@@ -6,13 +6,18 @@ using Bearer Token or Cookie transport with JWT Strategy
 This FastAPI application uses **`sqlite`** to power the database.
 
 References:
-- https://fastapi-users.github.io/fastapi-users/configuration/full-example/#sqlalchemy
-- https://github.com/fastapi-users/fastapi-users/tree/master/examples/sqlalchemy
+- https://github.com/fastapi-users/fastapi-users/tree/v10.0.2/examples/sqlalchemy
 
 ## Builds, (re)creates, starts, and attaches to containers for a service.
 
   ```sh
-  docker-compose up -d
+  docker-compose up --build
+  ```
+
+  or run _detached_
+
+  ```sh
+  docker-compose up -d --build
   ```
 
    Reference: https://docs.docker.com/compose/reference/up/
@@ -25,8 +30,8 @@ References:
   ```
 
   >```
-  >CONTAINER ID   IMAGE                                              COMMAND            CREATED          STATUS          PORTS                  NAMES
-  >60715dc16b22   docker-compose-fastapi-users-jwt-multi-transport   "python -m main"   13 seconds ago   Up 13 seconds   0.0.0.0:80->8000/tcp   06_docker_compose_fastapi_users_jwt_multi_transport_api_1
+  >CONTAINER ID   IMAGE                    COMMAND            CREATED          STATUS          PORTS                  NAMES
+  >2bfae674bbdd   pipenv-example06-image   "python -m main"   15 seconds ago   Up 14 seconds   0.0.0.0:80->8000/tcp   pipenv-example06-container
   >```
 
   Reference: https://docs.docker.com/engine/reference/commandline/ps/
@@ -47,15 +52,14 @@ References:
 
   ```sh
   docker image ls
-  docker image ls | grep docker-compose-multifile-image
   ```
 
-  Reference: https://docs.docker.com/engine/reference/commandline/image/
+  >```
+  >REPOSITORY               TAG       IMAGE ID       CREATED             SIZE
+  >pipenv-example06-image   latest    322a82feb672   34 seconds ago      288MB
+  >```
 
-  >```
-  >REPOSITORY                                         TAG       IMAGE ID       CREATED          SIZE
-  >docker-compose-fastapi-users-jwt-multi-transport   latest    04bf317bdb01   55 seconds ago   238MB
-  >```
+  Reference: https://docs.docker.com/engine/reference/commandline/image/
 
 
 ## Verify FastAPI is running with a Web Browser

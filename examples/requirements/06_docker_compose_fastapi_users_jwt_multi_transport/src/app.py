@@ -1,12 +1,12 @@
-from app.db import create_db_and_tables
-from app.models import User, UserDB
-from app.users import (
+from fastapi import Depends, FastAPI
+from src.db import User, create_db_and_tables
+from src.schemas import UserCreate, UserRead, UserUpdate
+from src.users import (
     bearer_backend,
     cookie_backend,
     current_active_user,
     fast_api_users,
 )
-from fastapi import Depends, FastAPI
 
 app = FastAPI()
 
@@ -16,22 +16,30 @@ app.include_router(
 app.include_router(
     fast_api_users.get_auth_router(cookie_backend), prefix="/auth/cookie", tags=["auth"]
 )
-app.include_router(fast_api_users.get_register_router(), prefix="/auth", tags=["auth"])
+app.include_router(
+    fast_api_users.get_register_router(UserRead, UserCreate),
+    prefix="/auth",
+    tags=["auth"],
+)
 app.include_router(
     fast_api_users.get_reset_password_router(),
     prefix="/auth",
     tags=["auth"],
 )
 app.include_router(
-    fast_api_users.get_verify_router(),
+    fast_api_users.get_verify_router(UserRead),
     prefix="/auth",
     tags=["auth"],
 )
-app.include_router(fast_api_users.get_users_router(), prefix="/users", tags=["users"])
+app.include_router(
+    fast_api_users.get_users_router(UserRead, UserUpdate),
+    prefix="/users",
+    tags=["users"],
+)
 
 
 @app.get("/authenticated-route")
-async def authenticated_route(user: UserDB = Depends(current_active_user)):
+async def authenticated_route(user: User = Depends(current_active_user)):
     return {"message": f"Hello {user.email}!"}
 
 

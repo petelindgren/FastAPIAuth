@@ -6,7 +6,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: docker-compose-fastapi-users-jwt-multi-transport
+    image: pipenv-example06-image
+    container_name: pipenv-example06-container
     command: python -m main
     ports:
       - 80:8000

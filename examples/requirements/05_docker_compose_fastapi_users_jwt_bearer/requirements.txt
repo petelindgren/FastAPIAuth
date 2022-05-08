@@ -1,5 +1,0 @@
-# https://fastapi-users.github.io/fastapi-users/configuration/full-example/#sqlalchemy
-fastapi
-fastapi-users[sqlalchemy2]
-uvicorn[standard]
-aiosqlite

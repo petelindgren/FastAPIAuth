@@ -1,0 +1,20 @@
+# https://towardsdev.com/dockerize-your-apis-fastapi-part1-f44302652af9
+# https://fastapi-tutorial.readthedocs.io/en/latest/#project-setup
+version: "3"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./src/Dockerfile
+    image: pipenv-example08-image
+    container_name: pipenv-example08-container
+    command: python -m main
+    ports:
+      - 80:8000
+    networks:
+      - fastapiusers
+
+networks:
+  fastapiusers:
+    driver: bridge

@@ -1,4 +1,5 @@
 # https://fastapi.tiangolo.com/deployment/docker/#create-the-fastapi-code
+import os
 from typing import Optional
 
 from fastapi import FastAPI
@@ -6,9 +7,14 @@ from fastapi import FastAPI
 app = FastAPI()
 
 
+package_manager = os.getenv(
+    "PACKAGE_MANAGER_NAME", "needs 'environment' in 'docker-compose' file"
+)
+
+
 @app.get("/")
-def read_root():
-    return {"Hello": "World from MultiFile PDM Dockerfile"}
+async def root():
+    return {"root": f"Analog Interface ({package_manager})"}
 
 
 @app.get("/items/{item_id}")

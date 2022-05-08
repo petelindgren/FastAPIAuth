@@ -8,12 +8,14 @@ services:
       dockerfile: Dockerfile
     image: pipenv-example04-image
     container_name: pipenv-example04-container
-    command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+    command: python -m uvicorn src.main:app --host 0.0.0.0 --port 8000
+    environment:
+      - PACKAGE_MANAGER_NAME=Pipenv
     ports:
       - 80:8000
     networks:
-      - hello_world_network
+      - fastapi_network
 
 networks:
-  hello_world_network:
+  fastapi_network:
     driver: bridge

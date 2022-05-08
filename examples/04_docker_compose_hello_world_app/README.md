@@ -3,17 +3,21 @@
 This example demonstrates how to build and run a FastAPI application using a directory structure
 using `docker-compose.yaml` and a `Dockerfile`
 
+For demonstration purposes, this example includes 2 different
+ways to build a `Dockerfile` with `docker-compose`
 
 ## Builds, (re)creates, starts, and attaches to containers for a service.
+
+  Use Dockerfile to build Docker Image `pdm-example04-image`
 
   ```sh
   docker-compose up --build
   ```
 
-  or run _detached_
+  or 
 
-  ```sh
-  docker-compose up -d --build
+    ```sh
+  docker-compose -f docker-compose-pipenv.yml up --build
   ```
 
    Reference: https://docs.docker.com/compose/reference/up/
@@ -29,7 +33,7 @@ using `docker-compose.yaml` and a `Dockerfile`
 
   >```
   >CONTAINER ID   IMAGE                    COMMAND                  CREATED          STATUS          PORTS                  NAMES
-  >4a9fc231cb01   pipenv-example04-image   "uvicorn app.main:ap…"   14 seconds ago   Up 13 seconds   0.0.0.0:80->8000/tcp   pipenv-example04-container
+  >81df4bde94e5   pipenv-example04-image   "uvicorn main:app --…"   24 seconds ago   Up 23 seconds   0.0.0.0:80->8000/tcp   pipenv-example04-container
   >```
 
   Reference: https://docs.docker.com/engine/reference/commandline/ps/
@@ -55,8 +59,8 @@ using `docker-compose.yaml` and a `Dockerfile`
   Reference: https://docs.docker.com/engine/reference/commandline/image/
 
   >```
-  >REPOSITORY                 TAG       IMAGE ID       CREATED              SIZE
-  >pipenv-example04-image     latest    1a5b5d220b09   About a minute ago   247MB
+  >REPOSITORY               TAG       IMAGE ID       CREATED         SIZE
+  >pipenv-example04-image   latest    365992878f9b   2 minutes ago   247MB
   >```
 
 
@@ -67,5 +71,11 @@ using `docker-compose.yaml` and a `Dockerfile`
   You should see this
 
   ```
-  {"Hello": "World from MultiFile docker-compose"}
+  {"root":"Analog Interface (PDM)"}
+  ```
+
+  or 
+
+  ```
+  {"root":"Analog Interface (Pipenv)"}
   ```

@@ -11,6 +11,6 @@ COPY Pipfile Pipfile.lock ${PROJECT_DIR}/
 
 RUN pipenv install --system --deploy
 
-COPY ./main.py ${PROJECT_DIR}/
+COPY ./main_pipenv.py ${PROJECT_DIR}/main.py
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]

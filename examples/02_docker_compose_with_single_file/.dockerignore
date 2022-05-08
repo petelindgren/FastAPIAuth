@@ -1,0 +1,7 @@
+# Ignore .git and .cache folders
+.cache
+.idea
+docker-compose*.yaml
+Dockerfile*
+**/*__pycache__
+**/*__pypackages__

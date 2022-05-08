@@ -3,17 +3,21 @@
 This example demonstrates how to build and run a single file FastAPI application
 using `docker-compose.yaml` and a `Dockerfile`
 
+For demonstration purposes, this example includes 2 different
+ways to build a `Dockerfile` with `docker-compose`
 
 ## Builds, (re)creates, starts, and attaches to containers for a service.
+
+  Use Dockerfile to build Docker Image `pdm-example02-image`
 
   ```sh
   docker-compose up --build
   ```
 
-  or run _detached_
+  or 
 
-  ```sh
-  docker-compose up -d --build
+    ```sh
+  docker-compose -f docker-compose-pipenv.yml up --build
   ```
 
    Reference: https://docs.docker.com/compose/reference/up/
@@ -67,5 +71,11 @@ using `docker-compose.yaml` and a `Dockerfile`
   You should see this
 
   ```
-  {"message": "docker-compose version of SingleFile Hello World"}
+  {"root":"Analog Interface (PDM)"}
+  ```
+
+  or 
+
+  ```
+  {"root":"Analog Interface (Pipenv)"}
   ```

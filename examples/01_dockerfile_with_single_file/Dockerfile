@@ -23,10 +23,8 @@ ENV PYTHONPATH=/project/pkgs
 COPY --from=builder /project/__pypackages__/3.9/lib /project/pkgs
 
 # copy project files
-COPY ./main.py /project/
-
-# Use entrypoint to keep Docker container running for debugging
-# ENTRYPOINT ["tail", "-f", "/dev/null"]
+COPY ./main_pdm.py /project/main.py
 
 # set command/entrypoint, adapt to fit your needs
-CMD ["python", "-m", "uvicorn", "project.main:app", "--host", "0.0.0.0", "--port", "80"]
+ENTRYPOINT ["python", "-m"]
+CMD ["uvicorn", "project.main:app", "--host", "0.0.0.0", "--port", "80"]

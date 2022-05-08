@@ -18,15 +18,17 @@ RUN pdm install --prod --no-lock --no-editable
 # run stage
 FROM python:3.9-slim
 
-# retrieve packages from build stage
 ENV PYTHONPATH=/project/pkgs
+ENV PACKAGE_MANAGER_NAME=PDM
+
+# retrieve packages from build stage
 COPY --from=builder /project/__pypackages__/3.9/lib /project/pkgs
 
 # copy project files
-COPY ./hello_world /project/app
+COPY ./src /project/src
 
-# Use entrypoint to keep Docker container running for debugging
-# ENTRYPOINT ["tail", "-f", "/dev/null"]
+WORKDIR /project
 
 # set command/entrypoint, adapt to fit your needs
-CMD ["python", "-m", "uvicorn", "project.app.main:app", "--host", "0.0.0.0", "--port", "80"]
+ENTRYPOINT ["python", "-m"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "80"]

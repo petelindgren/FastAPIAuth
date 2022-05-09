@@ -5,7 +5,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: ./src/Dockerfile.pipenv
+      dockerfile: Dockerfile.pipenv
     image: pipenv-example08-image
     container_name: pipenv-example08-container
     command: python -m main

@@ -5,7 +5,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: ./src/Dockerfile
+      dockerfile: Dockerfile
     image: pdm-example08-image
     container_name: pdm-example08-container
     command: python -m main

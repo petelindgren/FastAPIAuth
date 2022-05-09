@@ -6,8 +6,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: pdm-docker-compose-fastapi-users-jwt-multi-transport
+    image: pdm-example06-image
+    container_name: pdm-example06-container
     command: python -m main
+    environment:
+      - PACKAGE_MANAGER_NAME=PDM
     ports:
       - 80:8000
     networks:

@@ -9,6 +9,8 @@ services:
     image: pdm-example05-image
     container_name: pdm-example05-container
     command: python -m main
+    environment:
+      - PACKAGE_MANAGER_NAME=PDM
     ports:
       - 80:8000
     networks:

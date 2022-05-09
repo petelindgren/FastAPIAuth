@@ -9,6 +9,8 @@ services:
     image: pipenv-example06-image
     container_name: pipenv-example06-container
     command: python -m main
+    environment:
+      - PACKAGE_MANAGER_NAME=Pipenv
     ports:
       - 80:8000
     networks:

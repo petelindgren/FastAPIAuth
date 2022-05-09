@@ -1,3 +1,5 @@
+import os
+
 from fastapi import Depends, FastAPI
 from src.db import User, create_db_and_tables
 from src.schemas import UserCreate, UserRead, UserUpdate
@@ -7,6 +9,11 @@ from src.users import (
     current_active_user,
     fast_api_users,
 )
+
+package_manager = os.getenv(
+    "PACKAGE_MANAGER_NAME", "needs 'environment' in 'docker-compose' file"
+)
+
 
 app = FastAPI()
 
@@ -36,6 +43,11 @@ app.include_router(
     prefix="/users",
     tags=["users"],
 )
+
+
+@app.get("/")
+async def root():
+    return {"root": f"Analog Interface ({package_manager})"}
 
 
 @app.get("/authenticated-route")

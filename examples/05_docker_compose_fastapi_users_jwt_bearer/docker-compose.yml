@@ -6,7 +6,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: pdm-docker-compose-fastapi-users
+    image: pdm-example05-image
+    container_name: pdm-example05-container
     command: python -m main
     ports:
       - 80:8000

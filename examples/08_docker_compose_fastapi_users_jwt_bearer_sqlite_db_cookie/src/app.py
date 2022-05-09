@@ -14,8 +14,3 @@ def start_application():
 
 
 app = start_application()
-
-
-@app.get("/")
-def root_api():
-    return {"root": "Analog Interface"}

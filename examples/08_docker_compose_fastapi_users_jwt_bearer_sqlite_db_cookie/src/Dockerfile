@@ -8,25 +8,25 @@ FROM python:3.9-slim AS builder
 RUN pip install -U pip setuptools wheel
 RUN pip install pdm
 
-# copy PDM files to project src
-COPY pyproject.toml pdm.lock /src/
+# copy PDM files to project
+COPY pyproject.toml pdm.lock /project/
 
 # install dependencies and project
-WORKDIR /src
+WORKDIR /project
 RUN pdm install --prod --no-lock --no-editable
 
 # run stage
 FROM python:3.9-slim
 
 # retrieve packages from build stage
-ENV PYTHONPATH=/src/pkgs
-COPY --from=builder /src/__pypackages__/3.9/lib /src/pkgs
+ENV PYTHONPATH=/project/pkgs
+COPY --from=builder /project/__pypackages__/3.9/lib /project/pkgs
 
 # copy project files
-COPY . /src/
+COPY . /project/
 
 # Set WORKDIR for run stage so app can be started by `python -m main`
-WORKDIR /src
+WORKDIR /project
 
 # set command/entrypoint, adapt to fit your needs
 EXPOSE 8000

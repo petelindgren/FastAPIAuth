@@ -1,7 +1,11 @@
 from typing import AsyncGenerator
 
+# Imports "from fastapi_users.db" fail, use "from fastapi_users_db_sqlalchemy"
 from fastapi import Depends
-from fastapi_users.db import SQLAlchemyBaseUserTableUUID, SQLAlchemyUserDatabase
+from fastapi_users_db_sqlalchemy import (
+    SQLAlchemyBaseUserTableUUID,
+    SQLAlchemyUserDatabase,
+)
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.ext.declarative import DeclarativeMeta, declarative_base
 from sqlalchemy.orm import sessionmaker

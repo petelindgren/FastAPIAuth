@@ -10,8 +10,9 @@ dependencies = [
     "fastapi>=0.75.1",
     "pydantic>=1.9.0",
     "uvicorn>=0.17.6",
-    "fastapi-users[sqlalchemy2]>=9.3.0",
+    "fastapi-users[sqlalchemy]>=10.0.2",
     "aiosqlite>=0.17.0",
+    "sqlalchemy>=1.4.36",
 ]
 requires-python = ">=3.9"
 

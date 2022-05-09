@@ -1,6 +1,7 @@
 import uuid
 from typing import Optional
 
+# Imports "from fastapi_users.db" fail, use "from fastapi_users_db_sqlalchemy"
 from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, FastAPIUsers, UUIDIDMixin
 from fastapi_users.authentication import (
@@ -8,7 +9,7 @@ from fastapi_users.authentication import (
     BearerTransport,
     JWTStrategy,
 )
-from fastapi_users.db import SQLAlchemyUserDatabase
+from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
 from src.db import User, get_user_db
 
 SECRET = "MyV0iceIsMyPassp0rt"

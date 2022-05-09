@@ -6,12 +6,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: pdm-docker-compose-fastapi-users-jwt-multi-transport_v2
+    image: pipenv-example07-image
+    container_name: pipenv-example07-container
     command: python -m main
+    environment:
+      - PACKAGE_MANAGER_NAME=Pipenv
     ports:
       - 80:8000
     networks:
       - fastapiusers
+
 networks:
   fastapiusers:
     driver: bridge

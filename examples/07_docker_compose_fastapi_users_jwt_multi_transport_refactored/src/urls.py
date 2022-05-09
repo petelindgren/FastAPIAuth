@@ -1,3 +1,5 @@
+import os
+
 from fastapi import APIRouter, Depends
 from src.core.auth.models import User
 from src.core.auth.schemas.users import UserCreate, UserRead, UserUpdate
@@ -8,6 +10,11 @@ from src.users import (
     current_active_user,
     fast_api_users,
 )
+
+package_manager = os.getenv(
+    "PACKAGE_MANAGER_NAME", "needs 'environment' in 'docker-compose' file"
+)
+
 
 url_router = APIRouter()
 
@@ -38,6 +45,11 @@ url_router.include_router(
     prefix="/users",
     tags=["users"],
 )
+
+
+@url_router.get("/")
+async def root():
+    return {"root": f"Analog Interface ({package_manager})"}
 
 
 @url_router.get("/authenticated-route")

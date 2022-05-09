@@ -6,9 +6,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: pipenv-example07-image
-    container_name: pipenv-example07-container
+    image: pdm-example07-image
+    container_name: pdm-example07-container
     command: python -m main
+    environment:
+      - PACKAGE_MANAGER_NAME=PDM
     ports:
       - 80:8000
     networks:

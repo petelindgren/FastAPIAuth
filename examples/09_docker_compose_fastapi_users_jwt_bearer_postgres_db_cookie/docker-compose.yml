@@ -6,16 +6,25 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: pdm-example08-image
-    container_name: pdm-example08-container
+    image: pdm-example09-image
+    container_name: pdm-example09-container
     command: python -m main
     environment:
       - PACKAGE_MANAGER_NAME=PDM
+      # https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#module-sqlalchemy.dialects.postgresql.asyncpg
+      - DATABASE_URL=postgresql+asyncpg://example:passw0rd@db/example9
     ports:
       - 80:8000
-    networks:
-      - fastapiusers
 
-networks:
-  fastapiusers:
-    driver: bridge
+  # https://fastapi-tutorial.readthedocs.io/en/latest/#postgres-setup
+  db:
+    image: postgres:13.6-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=example
+      - POSTGRES_PASSWORD=passw0rd
+      - POSTGRES_DB=example9
+
+volumes:
+  postgres_data:

@@ -1,0 +1,30 @@
+# https://towardsdev.com/dockerize-your-apis-fastapi-part1-f44302652af9
+version: "3"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.pipenv
+    image: pipenv-example09-image
+    container_name: pipenv-example09-container
+    command: python -m main
+    environment:
+      - PACKAGE_MANAGER_NAME=Pipenv
+      # https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#module-sqlalchemy.dialects.postgresql.asyncpg
+      - DATABASE_URL=postgresql+asyncpg://example:passw0rd@db/example9
+    ports:
+      - 80:8000
+
+  # https://fastapi-tutorial.readthedocs.io/en/latest/#postgres-setup
+  db:
+    image: postgres:13.6-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=example
+      - POSTGRES_PASSWORD=passw0rd
+      - POSTGRES_DB=example9
+
+volumes:
+  postgres_data:

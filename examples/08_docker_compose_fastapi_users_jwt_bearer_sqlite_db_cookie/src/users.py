@@ -1,11 +1,10 @@
 import uuid
 from typing import Optional
 
+# Imports "from fastapi_users.db" fail, use "from fastapi_users_db_sqlalchemy"
 from fastapi import Depends, Request
 from fastapi_users import BaseUserManager, FastAPIUsers, UUIDIDMixin
 from fastapi_users.authentication import AuthenticationBackend
-
-# Imports "from fastapi_users.db" fail, use "from fastapi_users_db_sqlalchemy"
 from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
 from src.core.auth.models import User
 from src.core.storage.base import get_user_db

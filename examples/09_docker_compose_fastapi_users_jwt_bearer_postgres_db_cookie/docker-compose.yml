@@ -1,0 +1,21 @@
+# https://towardsdev.com/dockerize-your-apis-fastapi-part1-f44302652af9
+version: "3"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: pdm-example08-image
+    container_name: pdm-example08-container
+    command: python -m main
+    environment:
+      - PACKAGE_MANAGER_NAME=PDM
+    ports:
+      - 80:8000
+    networks:
+      - fastapiusers
+
+networks:
+  fastapiusers:
+    driver: bridge

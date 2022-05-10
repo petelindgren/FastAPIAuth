@@ -1,0 +1,16 @@
+# https://jonathanmeier.io/using-pipenv-with-docker/
+FROM python:3.9-slim
+
+RUN pip install pipenv
+
+ENV PROJECT_DIR /src
+
+WORKDIR ${PROJECT_DIR}
+
+COPY Pipfile Pipfile.lock ${PROJECT_DIR}/
+
+RUN pipenv install --system --deploy
+
+COPY . ${PROJECT_DIR}/
+
+EXPOSE 8000

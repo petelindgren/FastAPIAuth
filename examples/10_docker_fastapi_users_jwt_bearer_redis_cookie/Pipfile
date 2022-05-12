@@ -11,6 +11,7 @@ black = "*"
 fastapi-users = {extras = ["sqlalchemy"], version = "*"}
 sqlalchemy = "*"
 asyncpg = "*"
+aioredis = "*"
 
 [requires]
 python_version = "3.9"

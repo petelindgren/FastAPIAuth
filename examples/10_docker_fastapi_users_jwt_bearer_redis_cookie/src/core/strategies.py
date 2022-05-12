@@ -1,11 +1,12 @@
 from fastapi import Depends
-from fastapi_users.authentication import JWTStrategy
+from fastapi_users.authentication import JWTStrategy, RedisStrategy
 from fastapi_users.authentication.strategy.db import (
     AccessTokenDatabase,
     DatabaseStrategy,
 )
 from src.core.auth.schemas import AccessToken
 from src.core.storage.base import get_access_token_db
+from src.core.storage.cache import redis
 from src.settings import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, SECRET_KEY
 
 
@@ -19,6 +20,14 @@ def get_jwt_strategy() -> JWTStrategy:
         algorithm=ALGORITHM,
         lifetime_seconds=60 * ACCESS_TOKEN_EXPIRE_MINUTES,
     )
+
+
+def get_redis_strategy() -> RedisStrategy:
+    """
+    Reference:
+    * https://fastapi-users.github.io/fastapi-users/10.0/configuration/authentication/strategies/redis/
+    """
+    return RedisStrategy(redis, lifetime_seconds=60 * ACCESS_TOKEN_EXPIRE_MINUTES)
 
 
 def get_database_strategy(

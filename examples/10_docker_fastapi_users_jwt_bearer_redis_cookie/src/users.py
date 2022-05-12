@@ -8,7 +8,7 @@ from fastapi_users.authentication import AuthenticationBackend
 from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
 from src.core.auth.models import User
 from src.core.storage.base import get_user_db
-from src.core.strategies import get_database_strategy, get_jwt_strategy
+from src.core.strategies import get_jwt_strategy, get_redis_strategy
 from src.core.transports import bearer_transport, cookie_transport
 from src.settings import SECRET_KEY
 
@@ -44,7 +44,7 @@ bearer_backend = AuthenticationBackend(
 cookie_backend = AuthenticationBackend(
     name="cookie",
     transport=cookie_transport,
-    get_strategy=get_database_strategy,
+    get_strategy=get_redis_strategy,
 )
 
 

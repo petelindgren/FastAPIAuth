@@ -93,3 +93,21 @@ References:
   ```
   {"root":"Analog Interface (Pipenv)"}
   ```
+
+## Connect to Docker Postgresql
+
+1.  Get the Container ID above with `docker ps`
+
+2.  Log into the Docker container for postgres
+
+    ```
+    docker exec -it 5daf303c9e25 bash
+    ```
+
+3.  Connect to `psql`
+
+    ```sh
+    psql -h localhost -U example9
+    ```
+
+    - This is why the username and DB are the same

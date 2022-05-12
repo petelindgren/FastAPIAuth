@@ -13,10 +13,12 @@ services:
       - PACKAGE_MANAGER_NAME=PDM
       # https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#module-sqlalchemy.dialects.postgresql.asyncpg
       - DATABASE_URL=postgresql+asyncpg://example10:passw0rd@db/example10
+      - REDIS_URL=redis://redis:6379
     ports:
       - 80:8000
     depends_on:
       - db
+      - redis
 
   # https://fastapi-tutorial.readthedocs.io/en/latest/#postgres-setup
   db:
@@ -28,5 +30,15 @@ services:
       - POSTGRES_PASSWORD=passw0rd
       - POSTGRES_DB=example10
 
+  redis:
+    image: redis:3.2-alpine
+    ports:
+      - '${REDIS_PORT:-6379}:6379'
+    volumes:
+      - redis_data:/var/lib/redis
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+
 volumes:
   postgres_data:
+  redis_data:

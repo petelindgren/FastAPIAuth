@@ -9,8 +9,8 @@ pydantic = "*"
 uvicorn = "*"
 black = "*"
 fastapi-users = {extras = ["sqlalchemy"], version = "*"}
-aiosqlite = "*"
 sqlalchemy = "*"
+asyncpg = "*"
 
 [requires]
 python_version = "3.9"

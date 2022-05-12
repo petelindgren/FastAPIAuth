@@ -6,15 +6,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.pipenv
-    image: pipenv-example09-image
-    container_name: pipenv-example09-container
+    image: pipenv-example10-image
+    container_name: pipenv-example10-container
     command: python -m main
     environment:
       - PACKAGE_MANAGER_NAME=Pipenv
       # https://docs.sqlalchemy.org/en/14/dialects/postgresql.html#module-sqlalchemy.dialects.postgresql.asyncpg
-      - DATABASE_URL=postgresql+asyncpg://example9:passw0rd@db/example9
+      - DATABASE_URL=postgresql+asyncpg://example10:passw0rd@db/example10
     ports:
       - 80:8000
+    depends_on:
+      - db
 
   # https://fastapi-tutorial.readthedocs.io/en/latest/#postgres-setup
   db:
@@ -22,9 +24,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_USER=example9
+      - POSTGRES_USER=example10
       - POSTGRES_PASSWORD=passw0rd
-      - POSTGRES_DB=example9
+      - POSTGRES_DB=example10
 
 volumes:
   postgres_data:

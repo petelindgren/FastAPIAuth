@@ -3,7 +3,7 @@
 
 
 # build stage
-FROM python:3.9-slim AS builder
+FROM python:3.12-slim AS builder
 
 # set environment variables
 # PYTHONDONTWRITEBYTECODE: Prevents Python from writing pyc files to disc (equivalent to python -B option)
@@ -26,7 +26,7 @@ COPY pyproject.toml pdm.lock README.md /project/
 RUN pdm install --prod --no-lock --no-editable
 
 # run stage
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 # retrieve packages from build stage
 ENV PYTHONPATH=/project/pkgs

@@ -1,5 +1,5 @@
 # https://jonathanmeier.io/using-pipenv-with-docker/
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 ENV PYTHONPATH=/project/pkgs
 ENV PACKAGE_MANAGER_NAME=Pipenv

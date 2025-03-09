@@ -14,7 +14,7 @@ dependencies = [
     "sqlalchemy>=1.4.36",
     "asyncpg>=0.25.0",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 
 [project.urls]
 Homepage = ""

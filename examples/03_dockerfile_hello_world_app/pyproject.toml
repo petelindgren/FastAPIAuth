@@ -12,7 +12,7 @@ dependencies = [
     "uvicorn>=0.17.6",
     "black>=22.3.0",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.12"
 
 [project.urls]
 Homepage = ""

@@ -1,4 +1,4 @@
-# https://pdm.fming.dev/usage/advanced/#use-pdm-in-a-multi-stage-dockerfile
+# https://pdm-project.org/en/latest/usage/advanced/#use-pdm-in-a-multi-stage-dockerfile
 # https://fastapi.tiangolo.com/deployment/docker/#build-a-docker-image-with-a-single-file-fastapi
 
 

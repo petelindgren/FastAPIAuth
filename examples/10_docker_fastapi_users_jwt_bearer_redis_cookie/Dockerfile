@@ -1,8 +1,8 @@
-# https://pdm.fming.dev/usage/advanced/#use-pdm-in-a-multi-stage-dockerfile
+# https://pdm-project.org/en/latest/usage/advanced/#use-pdm-in-a-multi-stage-dockerfile
 # https://fastapi.tiangolo.com/deployment/docker/#build-a-docker-image-with-a-single-file-fastapi
 
 # build stage
-FROM python:3.9-slim AS builder
+FROM python:3.12-slim AS builder
 
 # install PDM
 RUN pip install -U pip setuptools wheel
@@ -16,7 +16,7 @@ WORKDIR /project
 RUN pdm install --prod --no-lock --no-editable
 
 # run stage
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 # retrieve packages from build stage
 ENV PYTHONPATH=/project/pkgs
